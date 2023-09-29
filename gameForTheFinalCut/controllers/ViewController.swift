@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     
     enum ButtonType: String {
+	   
 	   case play = "Играть"
 	   case highScore = "Таблица рекордов"
 	   case settings = "Настройки"
@@ -28,10 +29,8 @@ class ViewController: UIViewController {
 	   // Создаем кнопки из массива
 	   let buttons = buttonTypes.map { createButton(withTitle: $0.rawValue, backgroundColor: UIColor(named: "mainColor") ?? .gray) }
 	   
-	   // Добавляем кнопки на экран
 	   buttons.forEach { view.addSubview($0) }
 	   
-	   // Устанавливаем констрейнты для кнопок
 	   setupConstraints(for: buttons)
 	   
 	   buttons[0].addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
@@ -45,7 +44,7 @@ class ViewController: UIViewController {
     }
     
     
-
+//MARK: - all button functions
     func createButton(withTitle title: String, backgroundColor: UIColor) -> UIButton {
 	   let button = UIButton()
 	   button.translatesAutoresizingMaskIntoConstraints = false
@@ -66,10 +65,8 @@ class ViewController: UIViewController {
 		  ])
 		  
 		  if index == 0 {
-			 // Если это первая кнопка, то устанавливаем отступ от верхнего края
 			 button.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
 		  } else {
-			 // Для остальных кнопок устанавливаем отступ от предыдущей кнопки
 			 button.topAnchor.constraint(equalTo: buttons[index - 1].bottomAnchor, constant: 40).isActive = true
 		  }
 	   }

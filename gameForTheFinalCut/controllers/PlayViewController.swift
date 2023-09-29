@@ -10,9 +10,6 @@ import UIKit
 class PlayViewController: UIViewController {
     
     
-    let redViewWidth: CGFloat = 50.0
-    let redViewHeight: CGFloat = 50.0
-    
     //игровое поле
     let gameFieldView: UIView = {
 	   let view = UIView()
@@ -20,37 +17,43 @@ class PlayViewController: UIViewController {
 	   return view
     }()
     
-    var characterImageView: UIImageView!
     
-    // Создаем переменные для отслеживания положения персонажа
-    var initialTouchPoint: CGPoint = .zero
-    var characterWidth: CGFloat = 100
-    var characterHeight: CGFloat = 100
-    var isMovingLeft = false
-    
-    
+    let redViewWidth: CGFloat = 50.0
+    let redViewHeight: CGFloat = 50.0
     var redView: UIView!
     
+  
+    var characterImageView: UIImageView!
+    var characterWidth: CGFloat = 100
+    var characterHeight: CGFloat = 100
+    var characterXandYView:CGFloat = 300
+    var isMovingLeft = false
     var movementStep: CGFloat = 50.0
     
+    //создал для борьбы с магическими числами
+    var timeIntervalRedView = 1.5
+    
+    var locationOfControlArrowsOnTheScreen: CGFloat = 50.0
+    var secondLocationOfControlArrowsOnTheScreen: CGFloat = 0
+    
+    
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
 	   super.viewDidLoad()
 	   
-//	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
+	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
 	   
 	   view.addSubview(gameFieldView)
-	   //это для проверки, не забудь удалитьб
-	   gameFieldView.backgroundColor = .blue
-	   
-	   createRedView(width: redViewWidth, height: redViewHeight) // Исправлен вызов функции
-	   
-	   Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(animateGreenView), userInfo: nil, repeats: true)
-	   
 	   setupGameFieldConstraints(gameFieldView: gameFieldView, in: view)
 	   
+	   createRedView(width: redViewWidth, height: redViewHeight)
+	   Timer.scheduledTimer(timeInterval: timeIntervalRedView, target: self, selector: #selector(animateRedView), userInfo: nil, repeats: true)
+	   
+
 	   self.characterImageView = createCharacterImageView()
 	   gameFieldView.addSubview(self.characterImageView)
 	   
+	   //все что касается кнопок
 	   let upButton = createAndConfigureButton(systemName: "arrow.up", action: #selector(moveCharacterUp))
 	   let downButton = createAndConfigureButton(systemName: "arrow.down", action: #selector(moveCharacterDown))
 	   let leftButton = createAndConfigureButton(systemName: "arrow.left", action: #selector(moveCharacterLeft))
@@ -61,30 +64,13 @@ class PlayViewController: UIViewController {
 	   gameFieldView.addSubview(leftButton)
 	   gameFieldView.addSubview(rightButton)
 	   
-	   NSLayoutConstraint.activate([
-		  upButton.centerXAnchor.constraint(equalTo: gameFieldView.centerXAnchor),
-		  upButton.centerYAnchor.constraint(equalTo: gameFieldView.centerYAnchor, constant: -50),
-		  
-		  downButton.centerXAnchor.constraint(equalTo: gameFieldView.centerXAnchor),
-		  downButton.centerYAnchor.constraint(equalTo: gameFieldView.centerYAnchor, constant: 50),
-		  
-		  leftButton.centerXAnchor.constraint(equalTo: gameFieldView.centerXAnchor, constant: -50),
-		  leftButton.centerYAnchor.constraint(equalTo: gameFieldView.centerYAnchor),
-		  
-		  rightButton.centerXAnchor.constraint(equalTo: gameFieldView.centerXAnchor, constant: 50),
-		  rightButton.centerYAnchor.constraint(equalTo: gameFieldView.centerYAnchor)
-	   ])
+	   createConstraintButton(upButton, in: gameFieldView, xOffset: secondLocationOfControlArrowsOnTheScreen, yOffset: -(locationOfControlArrowsOnTheScreen))
+	   createConstraintButton(downButton, in: gameFieldView, xOffset: secondLocationOfControlArrowsOnTheScreen, yOffset: locationOfControlArrowsOnTheScreen)
+	   createConstraintButton(leftButton, in: gameFieldView, xOffset: -(locationOfControlArrowsOnTheScreen), yOffset: secondLocationOfControlArrowsOnTheScreen)
+	   createConstraintButton(rightButton, in: gameFieldView, xOffset: locationOfControlArrowsOnTheScreen, yOffset: secondLocationOfControlArrowsOnTheScreen)
     }
     
-    
-    
-    func createRedView(width: CGFloat, height: CGFloat) {
-	   let viewWidth = view.frame.size.width
-	   redView = UIView(frame: CGRect(x: viewWidth / 2 - width / 2, y: -height, width: width, height: height))
-	   redView.backgroundColor = UIColor.red
-	   view.addSubview(redView)
-    }
-
+    //MARK: - Game Field functions
     func setupGameFieldConstraints(gameFieldView: UIView, in view: UIView) {
 	   NSLayoutConstraint.activate([
 		  gameFieldView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -94,95 +80,84 @@ class PlayViewController: UIViewController {
 	   ])
     }
     
+    //MARK: - players functions
     func createCharacterImageView() -> UIImageView {
 	   let characterImageView = UIImageView(image: UIImage(named: "characterImage"))
 	   characterImageView.contentMode = .scaleAspectFit
-	   characterImageView.frame = CGRect(x: 300, y: 300, width: characterWidth, height: characterHeight)
+	   characterImageView.frame = CGRect(x: characterXandYView, y: characterXandYView, width: characterWidth, height: characterHeight)
 	   return characterImageView
     }
     
+    //MARK: - obstacle functions
     
-    @objc func animateGreenView() {
+    func createRedView(width: CGFloat, height: CGFloat) {
+	   let viewWidth = view.frame.size.width
+	   redView = UIView(frame: CGRect(x: viewWidth / 2 - width / 2, y: -height, width: width, height: height))
+	   redView.backgroundColor = UIColor.red
+	   view.addSubview(redView)
+    }
+    
+    @objc func animateRedView() {
 	   let viewHeight = view.frame.size.height
-	   let greenViewHeight: CGFloat = 50.0
+	   let redViewHeight: CGFloat = redViewWidth
 	   
 	   UIView.animate(withDuration: 1.0, animations: {
 		  self.redView.frame.origin.y = viewHeight
 		  
-		  }) { (finished) in
-		  self.redView.frame.origin.y = -greenViewHeight
+	   }) { (finished) in
+		  self.redView.frame.origin.y = -redViewHeight
 	   }
     }
     
-    @objc func handlePan(_ gesture: UIPanGestureRecognizer) {
-	   let translation = gesture.translation(in: gameFieldView)
-	   
-	   switch gesture.state {
-	   case .began:
-		  initialTouchPoint = characterImageView.center
-	   case .changed:
-		  // Определите направление движения
-		  if translation.x < 0 {
-			 // Персонаж двигается влево
-			 if !isMovingLeft {
-				// Отразите изображение по горизонтали (симметрично)
-				characterImageView.transform = characterImageView.transform.scaledBy(x: -1, y: 1)
-				isMovingLeft = true
-			 }
-		  } else {
-			 // Персонаж двигается вправо
-			 if isMovingLeft {
-				// Верните изображение в исходное состояние
-				characterImageView.transform = .identity
-				isMovingLeft = false
-			 }
-		  }
-		  
-		  // Вычисляем новую позицию персонажа
-		  let newCenterX = initialTouchPoint.x + translation.x
-		  let newCenterY = initialTouchPoint.y + translation.y
-		  
-		  // Ограничиваем перемещение персонажа в пределах игрового поля, учитывая размеры персонажа
-		  let maxX = gameFieldView.bounds.width - characterImageView.bounds.width / 2
-		  let maxY = gameFieldView.bounds.height - characterImageView.bounds.height / 2
-		  let minX = characterImageView.bounds.width / 2
-		  let minY = characterImageView.bounds.height / 2
-		  
-		  // Ограничиваем перемещение персонажа в пределах игрового поля
-		  characterImageView.center = CGPoint(x: max(minX, min(maxX, newCenterX)),
-									   y: max(minY, min(maxY, newCenterY)))
-		  
-	   default:
-		  break
-	   }
+    //MARK: - all button functions
+    func createConstraintButton(_ button: UIButton, in containerView: UIView, xOffset: CGFloat, yOffset: CGFloat) {
+	   NSLayoutConstraint.activate([
+		  button.centerXAnchor.constraint(equalTo: containerView.centerXAnchor, constant: xOffset),
+		  button.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: yOffset)
+	   ])
     }
     
     func createAndConfigureButton(systemName: String, action: Selector) -> UIButton {
 	   let button = UIButton(type: .system)
 	   button.setImage(UIImage(systemName: systemName), for: .normal)
-	   button.tintColor = .systemGreen
+	   button.tintColor = .black
 	   button.addTarget(self, action: action, for: .touchUpInside)
 	   button.translatesAutoresizingMaskIntoConstraints = false
 	   return button
     }
     
     @objc func moveCharacterUp() {
-	   // Измените позицию персонажа, чтобы он двигался вверх
-	   characterImageView.center.y -= movementStep
+	   let minY = gameFieldView.frame.minY
+	   if characterImageView.frame.minY - movementStep >= minY {
+		  characterImageView.center.y -= movementStep
+	   }
     }
     
     @objc func moveCharacterDown() {
-	   // Измените позицию персонажа, чтобы он двигался вниз
-	   characterImageView.center.y += movementStep
+	   let maxY = gameFieldView.frame.maxY
+	   if characterImageView.frame.maxY + movementStep <= maxY {
+		  characterImageView.center.y += movementStep
+	   }
     }
     
     @objc func moveCharacterLeft() {
-	   // Измените позицию персонажа, чтобы он двигался влево
-	   characterImageView.center.x -= movementStep
+	   let minX = gameFieldView.frame.minX
+	   if characterImageView.frame.minX - movementStep >= minX {
+		  characterImageView.center.x -= movementStep
+	   }
+	   characterImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
+	   isMovingLeft = true
     }
     
     @objc func moveCharacterRight() {
-	   // Измените позицию персонажа, чтобы он двигался вправо
-	   characterImageView.center.x += movementStep
+	   let maxX = gameFieldView.frame.maxX
+	   if characterImageView.frame.maxX + movementStep <= maxX {
+		  characterImageView.center.x += movementStep
+	   }
+	   
+	   characterImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+	   isMovingLeft = true
+	   
     }
+    
 }
