@@ -9,7 +9,6 @@ import UIKit
 
 class PlayViewController: UIViewController {
     
-    
     //игровое поле
     let gameFieldView: UIView = {
 	   let view = UIView()
@@ -17,24 +16,9 @@ class PlayViewController: UIViewController {
 	   return view
     }()
     
-    
-    let redViewWidth: CGFloat = 50.0
-    let redViewHeight: CGFloat = 50.0
     var redView: UIView!
     
-  
     var characterImageView: UIImageView!
-    var characterWidth: CGFloat = 100
-    var characterHeight: CGFloat = 100
-    var characterXandYView:CGFloat = 300
-    var isMovingLeft = false
-    var movementStep: CGFloat = 50.0
-    
-    //создал для борьбы с магическими числами
-    var timeIntervalRedView = 1.5
-    
-    var locationOfControlArrowsOnTheScreen: CGFloat = 50.0
-    var secondLocationOfControlArrowsOnTheScreen: CGFloat = 0
     
     
     //MARK: - viewDidLoad
@@ -46,10 +30,10 @@ class PlayViewController: UIViewController {
 	   view.addSubview(gameFieldView)
 	   setupGameFieldConstraints(gameFieldView: gameFieldView, in: view)
 	   
-	   createRedView(width: redViewWidth, height: redViewHeight)
-	   Timer.scheduledTimer(timeInterval: timeIntervalRedView, target: self, selector: #selector(animateRedView), userInfo: nil, repeats: true)
+	   createRedView(width: Constants.redViewWidth, height: Constants.redViewHeight)
+	   Timer.scheduledTimer(timeInterval: Constants.timeIntervalRedView, target: self, selector: #selector(animateRedView), userInfo: nil, repeats: true)
 	   
-
+	   
 	   self.characterImageView = createCharacterImageView()
 	   gameFieldView.addSubview(self.characterImageView)
 	   
@@ -64,10 +48,10 @@ class PlayViewController: UIViewController {
 	   gameFieldView.addSubview(leftButton)
 	   gameFieldView.addSubview(rightButton)
 	   
-	   createConstraintButton(upButton, in: gameFieldView, xOffset: secondLocationOfControlArrowsOnTheScreen, yOffset: -(locationOfControlArrowsOnTheScreen))
-	   createConstraintButton(downButton, in: gameFieldView, xOffset: secondLocationOfControlArrowsOnTheScreen, yOffset: locationOfControlArrowsOnTheScreen)
-	   createConstraintButton(leftButton, in: gameFieldView, xOffset: -(locationOfControlArrowsOnTheScreen), yOffset: secondLocationOfControlArrowsOnTheScreen)
-	   createConstraintButton(rightButton, in: gameFieldView, xOffset: locationOfControlArrowsOnTheScreen, yOffset: secondLocationOfControlArrowsOnTheScreen)
+	   createConstraintButton(upButton, in: gameFieldView, xOffset: Constants.secondLocationOfControlArrowsOnTheScreen, yOffset: -(Constants.locationOfControlArrowsOnTheScreen))
+	   createConstraintButton(downButton, in: gameFieldView, xOffset: Constants.secondLocationOfControlArrowsOnTheScreen, yOffset: Constants.locationOfControlArrowsOnTheScreen)
+	   createConstraintButton(leftButton, in: gameFieldView, xOffset: -(Constants.locationOfControlArrowsOnTheScreen), yOffset: Constants.secondLocationOfControlArrowsOnTheScreen)
+	   createConstraintButton(rightButton, in: gameFieldView, xOffset: Constants.locationOfControlArrowsOnTheScreen, yOffset: Constants.secondLocationOfControlArrowsOnTheScreen)
     }
     
     //MARK: - Game Field functions
@@ -84,7 +68,7 @@ class PlayViewController: UIViewController {
     func createCharacterImageView() -> UIImageView {
 	   let characterImageView = UIImageView(image: UIImage(named: "characterImage"))
 	   characterImageView.contentMode = .scaleAspectFit
-	   characterImageView.frame = CGRect(x: characterXandYView, y: characterXandYView, width: characterWidth, height: characterHeight)
+	   characterImageView.frame = CGRect(x: Constants.characterXandYView, y: Constants.characterXandYView, width: Constants.characterWidth, height: Constants.characterHeight)
 	   return characterImageView
     }
     
@@ -99,7 +83,7 @@ class PlayViewController: UIViewController {
     
     @objc func animateRedView() {
 	   let viewHeight = view.frame.size.height
-	   let redViewHeight: CGFloat = redViewWidth
+	   let redViewHeight: CGFloat = Constants.redViewWidth
 	   
 	   UIView.animate(withDuration: 1.0, animations: {
 		  self.redView.frame.origin.y = viewHeight
@@ -128,36 +112,53 @@ class PlayViewController: UIViewController {
     
     @objc func moveCharacterUp() {
 	   let minY = gameFieldView.frame.minY
-	   if characterImageView.frame.minY - movementStep >= minY {
-		  characterImageView.center.y -= movementStep
+	   if characterImageView.frame.minY - Constants.movementStep >= minY {
+		  characterImageView.center.y -= Constants.movementStep
 	   }
     }
     
     @objc func moveCharacterDown() {
 	   let maxY = gameFieldView.frame.maxY
-	   if characterImageView.frame.maxY + movementStep <= maxY {
-		  characterImageView.center.y += movementStep
+	   if characterImageView.frame.maxY + Constants.movementStep <= maxY {
+		  characterImageView.center.y += Constants.movementStep
 	   }
     }
     
     @objc func moveCharacterLeft() {
 	   let minX = gameFieldView.frame.minX
-	   if characterImageView.frame.minX - movementStep >= minX {
-		  characterImageView.center.x -= movementStep
+	   if characterImageView.frame.minX - Constants.movementStep >= minX {
+		  characterImageView.center.x -= Constants.movementStep
 	   }
 	   characterImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
-	   isMovingLeft = true
+	   Constants.isMovingLeft = true
     }
     
     @objc func moveCharacterRight() {
 	   let maxX = gameFieldView.frame.maxX
-	   if characterImageView.frame.maxX + movementStep <= maxX {
-		  characterImageView.center.x += movementStep
+	   if characterImageView.frame.maxX + Constants.movementStep <= maxX {
+		  characterImageView.center.x += Constants.movementStep
 	   }
 	   
 	   characterImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
-	   isMovingLeft = true
+	   Constants.isMovingLeft = true
 	   
     }
-    
 }
+// MARK: - Constants
+
+fileprivate extension PlayViewController {
+    
+    enum Constants {
+	   static let redViewWidth: CGFloat = 50.0
+	   static let redViewHeight: CGFloat = 50.0
+	   static let locationOfControlArrowsOnTheScreen: CGFloat = 50.0
+	   static let secondLocationOfControlArrowsOnTheScreen: CGFloat = 0
+	   static var characterWidth: CGFloat = 100
+	   static var characterHeight: CGFloat = 100
+	   static var characterXandYView:CGFloat = 300
+	   static var isMovingLeft = false
+	   static var movementStep: CGFloat = 50.0
+	   static var timeIntervalRedView = 1.5
+    }
+}
+

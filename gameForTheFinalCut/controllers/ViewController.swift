@@ -16,6 +16,7 @@ class ViewController: UIViewController {
 	   case settings = "Настройки"
     }
     
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
 	   super.viewDidLoad()
 	   
@@ -44,35 +45,35 @@ class ViewController: UIViewController {
     }
     
     
-//MARK: - all button functions
+    //MARK: - all button functions
     func createButton(withTitle title: String, backgroundColor: UIColor) -> UIButton {
 	   let button = UIButton()
 	   button.translatesAutoresizingMaskIntoConstraints = false
 	   button.setTitle(title, for: .normal)
 	   button.setTitleColor(.white, for: .normal)
 	   button.backgroundColor = backgroundColor
-	   button.layer.cornerRadius = 10
+	   button.layer.cornerRadius = Constants.cornerRadiusButton
 	   return button
     }
     
-
+    
     func setupConstraints(for buttons: [UIButton]) {
 	   for (index, button) in buttons.enumerated() {
 		  NSLayoutConstraint.activate([
 			 button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			 button.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
-			 button.heightAnchor.constraint(equalToConstant: 50)
+			 button.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.buttonWidthMultiplier),
+			 button.heightAnchor.constraint(equalToConstant: Constants.buttonHeight)
 		  ])
 		  
 		  if index == 0 {
-			 button.topAnchor.constraint(equalTo: view.topAnchor, constant: 200).isActive = true
+			 button.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.initialTopMargin).isActive = true
 		  } else {
-			 button.topAnchor.constraint(equalTo: buttons[index - 1].bottomAnchor, constant: 40).isActive = true
+			 button.topAnchor.constraint(equalTo: buttons[index - 1].bottomAnchor, constant: Constants.verticalSpacing).isActive = true
 		  }
 	   }
     }
     
-
+    
     @objc func playButtonTapped(sender: UIButton) {
 	   switch sender.tag {
 	   case 0:
@@ -81,13 +82,25 @@ class ViewController: UIViewController {
 	   case 1:
 		  let highScoreViewController = HighScoreViewController()
 		  navigationController?.pushViewController(highScoreViewController, animated: true)
-	   case 2: 
+	   case 2:
 		  let settingsViewController = SettingsViewController()
 		  navigationController?.pushViewController(settingsViewController, animated: true)
 	   default:
 		  break
 	   }
     }
+}
+
+// MARK: - Constants
+
+fileprivate extension ViewController {
     
+    enum Constants {
+	   static let cornerRadiusButton: CGFloat = 10.0
+	   static let buttonWidthMultiplier: CGFloat = 0.5
+	   static let buttonHeight: CGFloat = 50
+	   static let verticalSpacing: CGFloat = 40
+	   static let initialTopMargin: CGFloat = 200
+    }
 }
 
