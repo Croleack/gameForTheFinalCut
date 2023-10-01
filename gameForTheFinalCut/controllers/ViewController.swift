@@ -15,7 +15,7 @@ class ViewController: UIViewController {
 	   case highScore = "Таблица рекордов"
 	   case settings = "Настройки"
     }
-    
+   
     //MARK: - viewDidLoad
     override func viewDidLoad() {
 	   super.viewDidLoad()
@@ -27,12 +27,21 @@ class ViewController: UIViewController {
 	   
 	   let buttonTypes: [ButtonType] = [.play, .highScore, .settings]
 	   
-	   // Создаем кнопки из массива
 	   let buttons = buttonTypes.map { createButton(withTitle: $0.rawValue, backgroundColor: UIColor(named: "mainColor") ?? .gray) }
 	   
-	   buttons.forEach { view.addSubview($0) }
+	   let stackView = UIStackView(arrangedSubviews: buttons)
+	   stackView.axis = .vertical
+	   stackView.alignment = .center
+	   stackView.spacing = Constants.verticalSpacing
+	   stackView.translatesAutoresizingMaskIntoConstraints = false
 	   
-	   setupConstraints(for: buttons)
+	   view.addSubview(stackView)
+	   
+	   NSLayoutConstraint.activate([
+		  stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+		  stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+		  stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.buttonWidthMultiplier)
+	   ])
 	   
 	   buttons[0].addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
 	   buttons[0].tag = 0
@@ -44,36 +53,28 @@ class ViewController: UIViewController {
 	   buttons[2].tag = 2
     }
     
+    //MARK: - viewWillAppear
+    override func viewWillAppear(_ animated: Bool) {
+	   super.viewWillAppear(animated)
+	   
+	   
+	   navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
     
     //MARK: - all button functions
     func createButton(withTitle title: String, backgroundColor: UIColor) -> UIButton {
-	   let button = UIButton()
+	   var configuration = UIButton.Configuration.plain()
+	   configuration.title = title
+	   configuration.baseBackgroundColor = backgroundColor
+	   configuration.cornerStyle = .large
+	   let button = UIButton(configuration: configuration)
+	   
 	   button.translatesAutoresizingMaskIntoConstraints = false
-	   button.setTitle(title, for: .normal)
 	   button.setTitleColor(.white, for: .normal)
-	   button.backgroundColor = backgroundColor
-	   button.layer.cornerRadius = Constants.cornerRadiusButton
+	   
 	   return button
     }
-    
-    
-    func setupConstraints(for buttons: [UIButton]) {
-	   for (index, button) in buttons.enumerated() {
-		  NSLayoutConstraint.activate([
-			 button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			 button.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Constants.buttonWidthMultiplier),
-			 button.heightAnchor.constraint(equalToConstant: Constants.buttonHeight)
-		  ])
-		  
-		  if index == 0 {
-			 button.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.initialTopMargin).isActive = true
-		  } else {
-			 button.topAnchor.constraint(equalTo: buttons[index - 1].bottomAnchor, constant: Constants.verticalSpacing).isActive = true
-		  }
-	   }
-    }
-    
-    
+     
     @objc func playButtonTapped(sender: UIButton) {
 	   switch sender.tag {
 	   case 0:
@@ -96,7 +97,7 @@ class ViewController: UIViewController {
 fileprivate extension ViewController {
     
     enum Constants {
-	   static let cornerRadiusButton: CGFloat = 10.0
+	   static let cornerRadiusButton: CGFloat = 8.0
 	   static let buttonWidthMultiplier: CGFloat = 0.5
 	   static let buttonHeight: CGFloat = 50
 	   static let verticalSpacing: CGFloat = 40
