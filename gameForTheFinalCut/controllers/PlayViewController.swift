@@ -73,7 +73,7 @@ class PlayViewController: UIViewController {
     }
     
     //MARK: - Game Field functions
-    func setupGameFieldConstraints(gameFieldView: UIView, in view: UIView) {
+    private func setupGameFieldConstraints(gameFieldView: UIView, in view: UIView) {
 	   NSLayoutConstraint.activate([
 		  gameFieldView.topAnchor.constraint(equalTo: view.topAnchor),
 		  gameFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -83,7 +83,7 @@ class PlayViewController: UIViewController {
     }
     
     //MARK: - players functions
-    func createCharacterImageView() -> UIImageView {
+    private func createCharacterImageView() -> UIImageView {
 	   let characterImageView = UIImageView(image: UIImage(named: "characterImage"))
 	   characterImageView.contentMode = .scaleAspectFit
 	   characterImageView.frame = CGRect(x: Constants.characterXandYView, y: Constants.characterXandYView, width: Constants.characterWidth, height: Constants.characterHeight)
@@ -92,14 +92,14 @@ class PlayViewController: UIViewController {
     
     //MARK: - obstacle functions
     
-    func createRedView(width: CGFloat, height: CGFloat) {
+    private func createRedView(width: CGFloat, height: CGFloat) {
 	   let viewWidth = view.frame.size.width
 	   redView = UIView(frame: CGRect(x: viewWidth / 2 - width / 2, y: -height, width: width, height: height))
 	   redView.backgroundColor = UIColor.red
 	   view.addSubview(redView)
     }
     
-    @objc func animateRedView() {
+    @objc private func animateRedView() {
 	   let viewHeight = view.frame.size.height
 	   let redViewHeight: CGFloat = Constants.redViewWidth
 	   
@@ -163,13 +163,13 @@ fileprivate extension PlayViewController {
     enum Constants {
 	   static let redViewWidth: CGFloat = 70.0
 	   static let redViewHeight: CGFloat = 70.0
-	   static var characterWidth: CGFloat = 100
-	   static var characterHeight: CGFloat = 100
-	   static var characterXandYView: CGFloat = 300
-	   static var movementStep: CGFloat = 50.0
-	   static var timeIntervalRedView = 1.5
-	   static var constraintsTopAnchorStopwatchView: CGFloat = -20.0
-	   static var constraintsTrailingAnchorStopwatchView: CGFloat = -10.0
+	   static let characterWidth: CGFloat = 100
+	   static let characterHeight: CGFloat = 100
+	   static let characterXandYView: CGFloat = 300
+	   static let movementStep: CGFloat = 50.0
+	   static let timeIntervalRedView = 1.5
+	   static let constraintsTopAnchorStopwatchView: CGFloat = -20.0
+	   static let constraintsTrailingAnchorStopwatchView: CGFloat = -10.0
     }
 }
 
