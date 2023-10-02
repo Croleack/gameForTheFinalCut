@@ -20,6 +20,8 @@ class PlayViewController: UIViewController {
     
     var characterImageView: UIImageView!
     
+    var gestureAreaView: GestureAreaView!
+    
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -37,30 +39,44 @@ class PlayViewController: UIViewController {
 	   self.characterImageView = createCharacterImageView()
 	   gameFieldView.addSubview(self.characterImageView)
 	   
-	   //все что касается кнопок
-	   let upButton = createAndConfigureButton(systemName: "arrow.up", action: #selector(moveCharacterUp))
-	   let downButton = createAndConfigureButton(systemName: "arrow.down", action: #selector(moveCharacterDown))
-	   let leftButton = createAndConfigureButton(systemName: "arrow.left", action: #selector(moveCharacterLeft))
-	   let rightButton = createAndConfigureButton(systemName: "arrow.right", action: #selector(moveCharacterRight))
+	   gestureAreaView = GestureAreaView()
+	   gestureAreaView.translatesAutoresizingMaskIntoConstraints = false
+	   view.addSubview(gestureAreaView)
 	   
-	   gameFieldView.addSubview(upButton)
-	   gameFieldView.addSubview(downButton)
-	   gameFieldView.addSubview(leftButton)
-	   gameFieldView.addSubview(rightButton)
 	   
-	   createConstraintButton(upButton, in: gameFieldView, xOffset: Constants.secondLocationOfControlArrowsOnTheScreen, yOffset: -(Constants.locationOfControlArrowsOnTheScreen))
-	   createConstraintButton(downButton, in: gameFieldView, xOffset: Constants.secondLocationOfControlArrowsOnTheScreen, yOffset: Constants.locationOfControlArrowsOnTheScreen)
-	   createConstraintButton(leftButton, in: gameFieldView, xOffset: -(Constants.locationOfControlArrowsOnTheScreen), yOffset: Constants.secondLocationOfControlArrowsOnTheScreen)
-	   createConstraintButton(rightButton, in: gameFieldView, xOffset: Constants.locationOfControlArrowsOnTheScreen, yOffset: Constants.secondLocationOfControlArrowsOnTheScreen)
+	   // Ограничения для GestureAreaView
+	   NSLayoutConstraint.activate([
+		  gestureAreaView.topAnchor.constraint(equalTo: view.topAnchor),
+		  gestureAreaView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+		  gestureAreaView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+		  gestureAreaView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+	   ])
+	   
+	   // Назначьте обработчики жестов
+	   gestureAreaView.topAreaTapHandler = { [weak self] in
+		  self?.moveCharacterUp()
+	   }
+	   
+	   gestureAreaView.leftAreaTapHandler = { [weak self] in
+		  self?.moveCharacterLeft()
+	   }
+	   
+	   gestureAreaView.rightAreaTapHandler = { [weak self] in
+		  self?.moveCharacterRight()
+	   }
+	   
+	   gestureAreaView.bottomAreaTapHandler = { [weak self] in
+		  self?.moveCharacterDown()
+	   }
     }
     
     //MARK: - Game Field functions
     func setupGameFieldConstraints(gameFieldView: UIView, in view: UIView) {
 	   NSLayoutConstraint.activate([
 		  gameFieldView.topAnchor.constraint(equalTo: view.topAnchor),
-		  gameFieldView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 		  gameFieldView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-		  gameFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+		  gameFieldView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+		  gameFieldView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 	   ])
     }
     
@@ -93,22 +109,7 @@ class PlayViewController: UIViewController {
 	   }
     }
     
-    //MARK: - all button functions
-    func createConstraintButton(_ button: UIButton, in containerView: UIView, xOffset: CGFloat, yOffset: CGFloat) {
-	   NSLayoutConstraint.activate([
-		  button.centerXAnchor.constraint(equalTo: containerView.centerXAnchor, constant: xOffset),
-		  button.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: yOffset)
-	   ])
-    }
-    
-    func createAndConfigureButton(systemName: String, action: Selector) -> UIButton {
-	   let button = UIButton(type: .system)
-	   button.setImage(UIImage(systemName: systemName), for: .normal)
-	   button.tintColor = .black
-	   button.addTarget(self, action: action, for: .touchUpInside)
-	   button.translatesAutoresizingMaskIntoConstraints = false
-	   return button
-    }
+    //    //MARK: - all button functions
     
     @objc func moveCharacterUp() {
 	   let minY = gameFieldView.frame.minY
@@ -149,8 +150,6 @@ fileprivate extension PlayViewController {
     enum Constants {
 	   static let redViewWidth: CGFloat = 50.0
 	   static let redViewHeight: CGFloat = 50.0
-	   static let locationOfControlArrowsOnTheScreen: CGFloat = 50.0
-	   static let secondLocationOfControlArrowsOnTheScreen: CGFloat = 0
 	   static var characterWidth: CGFloat = 100
 	   static var characterHeight: CGFloat = 100
 	   static var characterXandYView:CGFloat = 300
