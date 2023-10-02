@@ -130,7 +130,6 @@ class PlayViewController: UIViewController {
 		  characterImageView.center.x -= Constants.movementStep
 	   }
 	   characterImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
-	   Constants.isMovingLeft = true
     }
     
     @objc func moveCharacterRight() {
@@ -140,7 +139,6 @@ class PlayViewController: UIViewController {
 	   }
 	   
 	   characterImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
-	   Constants.isMovingLeft = true
 	   
     }
 }
@@ -156,7 +154,6 @@ fileprivate extension PlayViewController {
 	   static var characterWidth: CGFloat = 100
 	   static var characterHeight: CGFloat = 100
 	   static var characterXandYView:CGFloat = 300
-	   static var isMovingLeft = false
 	   static var movementStep: CGFloat = 50.0
 	   static var timeIntervalRedView = 1.5
     }
