@@ -9,33 +9,29 @@ import UIKit
 
 class GestureAreaView: UIView {
     
-    // Области для разделения экрана
     var topAreaView: UIView!
     var bottomAreaView: UIView!
     var leftAreaView: UIView!
     var rightAreaView: UIView!
     
-    // Обработчики жестов
     var topAreaTapHandler: (() -> Void)?
     var bottomAreaTapHandler: (() -> Void)?
     var leftAreaTapHandler: (() -> Void)?
     var rightAreaTapHandler: (() -> Void)?
-    
+    //MARK: - init
     override init(frame: CGRect) {
 	   super.init(frame: frame)
 	   
-	   // Создание областей и жестов
 	   createGestureAreas()
     }
     
     required init?(coder aDecoder: NSCoder) {
 	   super.init(coder: aDecoder)
 	   
-	   // Создание областей и жестов
 	   createGestureAreas()
     }
     
-    //MARK: - Создание областей и жестов
+    //MARK: - func createGestureAreas
     
     private func createGestureAreas() {
 	   let stackView = UIStackView()
@@ -67,10 +63,8 @@ class GestureAreaView: UIView {
 	   stackView.addArrangedSubview(rightAreaView)
 	   stackView.addArrangedSubview(bottomAreaView)
 	   
-	   // Добавление stackView на представление
 	   addSubview(stackView)
 	   
-	   // Ограничения для stackView
 	   NSLayoutConstraint.activate([
 		  stackView.topAnchor.constraint(equalTo: topAnchor),
 		  stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -79,7 +73,7 @@ class GestureAreaView: UIView {
 	   ])
     }
     
-    //MARK: - Обработчики жестов
+    //MARK: - gesture handlers
     
     @objc private func handleTopAreaTap() {
 	   topAreaTapHandler?()

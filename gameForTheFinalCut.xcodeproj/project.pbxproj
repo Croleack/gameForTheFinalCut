@@ -16,6 +16,7 @@
 		E95799A92AC2EAD8004A1F44 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95799A82AC2EAD8004A1F44 /* HighScoreViewController.swift */; };
 		E95799AB2AC2EB0C004A1F44 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */; };
 		E9CADDBF2ACABAA800E51F06 /* GestureAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CADDBE2ACABAA800E51F06 /* GestureAreaView.swift */; };
+		E9CADDC12ACAD4C000E51F06 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		E95799A82AC2EAD8004A1F44 /* HighScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E9CADDBE2ACABAA800E51F06 /* GestureAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GestureAreaView.swift; path = gameForTheFinalCut/GestureAreaView.swift; sourceTree = SOURCE_ROOT; };
+		E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StopwatchView.swift; path = gameForTheFinalCut/StopwatchView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				E9CADDBE2ACABAA800E51F06 /* GestureAreaView.swift */,
+				E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				E95799922AC2E2B6004A1F44 /* AppDelegate.swift in Sources */,
 				E95799942AC2E2B6004A1F44 /* SceneDelegate.swift in Sources */,
 				E95799AB2AC2EB0C004A1F44 /* SettingsViewController.swift in Sources */,
+				E9CADDC12ACAD4C000E51F06 /* StopwatchView.swift in Sources */,
 				E9CADDBF2ACABAA800E51F06 /* GestureAreaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

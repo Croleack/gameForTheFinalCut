@@ -22,6 +22,8 @@ class PlayViewController: UIViewController {
     
     var gestureAreaView: GestureAreaView!
     
+    var stopwatchView: StopwatchView!
+    
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -43,8 +45,9 @@ class PlayViewController: UIViewController {
 	   gestureAreaView.translatesAutoresizingMaskIntoConstraints = false
 	   view.addSubview(gestureAreaView)
 	   
+	   setupStopwatchView()
 	   
-	   // Ограничения для GestureAreaView
+	   
 	   NSLayoutConstraint.activate([
 		  gestureAreaView.topAnchor.constraint(equalTo: view.topAnchor),
 		  gestureAreaView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -52,7 +55,6 @@ class PlayViewController: UIViewController {
 		  gestureAreaView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 	   ])
 	   
-	   // Назначьте обработчики жестов
 	   gestureAreaView.topAreaTapHandler = { [weak self] in
 		  self?.moveCharacterUp()
 	   }
@@ -109,23 +111,23 @@ class PlayViewController: UIViewController {
 	   }
     }
     
-    //    //MARK: - all button functions
+//MARK: - all button functions
     
-    @objc func moveCharacterUp() {
+    @objc private func moveCharacterUp() {
 	   let minY = gameFieldView.frame.minY
 	   if characterImageView.frame.minY - Constants.movementStep >= minY {
 		  characterImageView.center.y -= Constants.movementStep
 	   }
     }
     
-    @objc func moveCharacterDown() {
+    @objc private func moveCharacterDown() {
 	   let maxY = gameFieldView.frame.maxY
 	   if characterImageView.frame.maxY + Constants.movementStep <= maxY {
 		  characterImageView.center.y += Constants.movementStep
 	   }
     }
     
-    @objc func moveCharacterLeft() {
+    @objc private func moveCharacterLeft() {
 	   let minX = gameFieldView.frame.minX
 	   if characterImageView.frame.minX - Constants.movementStep >= minX {
 		  characterImageView.center.x -= Constants.movementStep
@@ -133,7 +135,7 @@ class PlayViewController: UIViewController {
 	   characterImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
     }
     
-    @objc func moveCharacterRight() {
+    @objc private func moveCharacterRight() {
 	   let maxX = gameFieldView.frame.maxX
 	   if characterImageView.frame.maxX + Constants.movementStep <= maxX {
 		  characterImageView.center.x += Constants.movementStep
@@ -142,19 +144,32 @@ class PlayViewController: UIViewController {
 	   characterImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
 	   
     }
+    //MARK: - setupStopwatchView
+    private func setupStopwatchView() {
+	   stopwatchView = StopwatchView()
+	   stopwatchView.translatesAutoresizingMaskIntoConstraints = false
+	   view.addSubview(stopwatchView)
+	   
+	   NSLayoutConstraint.activate([
+		  stopwatchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.constraintsTopAnchorStopwatchView),
+		  stopwatchView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: Constants.constraintsTrailingAnchorStopwatchView)
+	   ])
+    }
 }
 // MARK: - Constants
 
 fileprivate extension PlayViewController {
     
     enum Constants {
-	   static let redViewWidth: CGFloat = 50.0
-	   static let redViewHeight: CGFloat = 50.0
+	   static let redViewWidth: CGFloat = 70.0
+	   static let redViewHeight: CGFloat = 70.0
 	   static var characterWidth: CGFloat = 100
 	   static var characterHeight: CGFloat = 100
-	   static var characterXandYView:CGFloat = 300
+	   static var characterXandYView: CGFloat = 300
 	   static var movementStep: CGFloat = 50.0
 	   static var timeIntervalRedView = 1.5
+	   static var constraintsTopAnchorStopwatchView: CGFloat = -20.0
+	   static var constraintsTrailingAnchorStopwatchView: CGFloat = -10.0
     }
 }
 
