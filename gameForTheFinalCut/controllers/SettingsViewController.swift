@@ -9,9 +9,18 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
+    private let customTableView = CustomTableView()
+    
     override func viewDidLoad() {
 	   super.viewDidLoad()
 	   
+	   setupViews()
+    }
+    
+    private func setupViews() {
 	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
+	   
+	   customTableView.frame = view.frame
+	   view.addSubview(customTableView)
     }
 }
