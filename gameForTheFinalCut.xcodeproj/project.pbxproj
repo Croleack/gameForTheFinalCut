@@ -18,6 +18,12 @@
 		E9CADDBF2ACABAA800E51F06 /* GestureAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CADDBE2ACABAA800E51F06 /* GestureAreaView.swift */; };
 		E9CADDC12ACAD4C000E51F06 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */; };
 		E9D178512ACC943700C9E520 /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D178502ACC943700C9E520 /* CustomTableView.swift */; };
+		E9D178542ACD57C800C9E520 /* ExampleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D178532ACD57C800C9E520 /* ExampleSection.swift */; };
+		E9D178562ACD75AB00C9E520 /* ExampleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D178552ACD75AB00C9E520 /* ExampleDataSource.swift */; };
+		E9D178592ACD77C000C9E520 /* ObstaclesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D178582ACD77C000C9E520 /* ObstaclesTableViewCell.swift */; };
+		E9D1785B2ACD77E800C9E520 /* GameSpeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1785A2ACD77E800C9E520 /* GameSpeedTableViewCell.swift */; };
+		E9D1785D2ACD780000C9E520 /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1785C2ACD780000C9E520 /* NameTableViewCell.swift */; };
+		E9D1785F2ACD781900C9E520 /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1785E2ACD781900C9E520 /* PhotoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +39,13 @@
 		E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E9CADDBE2ACABAA800E51F06 /* GestureAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GestureAreaView.swift; path = gameForTheFinalCut/GestureAreaView.swift; sourceTree = SOURCE_ROOT; };
 		E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StopwatchView.swift; path = gameForTheFinalCut/StopwatchView.swift; sourceTree = SOURCE_ROOT; };
-		E9D178502ACC943700C9E520 /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTableView.swift; path = gameForTheFinalCut/CustomTableView.swift; sourceTree = SOURCE_ROOT; };
+		E9D178502ACC943700C9E520 /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTableView.swift; path = gameForTheFinalCut/Views/DiffableDataSource/CustomTableView.swift; sourceTree = SOURCE_ROOT; };
+		E9D178532ACD57C800C9E520 /* ExampleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSection.swift; sourceTree = "<group>"; };
+		E9D178552ACD75AB00C9E520 /* ExampleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleDataSource.swift; sourceTree = "<group>"; };
+		E9D178582ACD77C000C9E520 /* ObstaclesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstaclesTableViewCell.swift; sourceTree = "<group>"; };
+		E9D1785A2ACD77E800C9E520 /* GameSpeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSpeedTableViewCell.swift; sourceTree = "<group>"; };
+		E9D1785C2ACD780000C9E520 /* NameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
+		E9D1785E2ACD781900C9E520 /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,11 +103,33 @@
 		E95799AD2AC33A65004A1F44 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E9D178522ACD577F00C9E520 /* DiffableDataSource */,
 				E9CADDBE2ACABAA800E51F06 /* GestureAreaView.swift */,
 				E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */,
-				E9D178502ACC943700C9E520 /* CustomTableView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E9D178522ACD577F00C9E520 /* DiffableDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				E9D178572ACD777500C9E520 /* Cells */,
+				E9D178502ACC943700C9E520 /* CustomTableView.swift */,
+				E9D178532ACD57C800C9E520 /* ExampleSection.swift */,
+				E9D178552ACD75AB00C9E520 /* ExampleDataSource.swift */,
+			);
+			path = DiffableDataSource;
+			sourceTree = "<group>";
+		};
+		E9D178572ACD777500C9E520 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				E9D178582ACD77C000C9E520 /* ObstaclesTableViewCell.swift */,
+				E9D1785A2ACD77E800C9E520 /* GameSpeedTableViewCell.swift */,
+				E9D1785C2ACD780000C9E520 /* NameTableViewCell.swift */,
+				E9D1785E2ACD781900C9E520 /* PhotoTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,14 +202,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9D1785B2ACD77E800C9E520 /* GameSpeedTableViewCell.swift in Sources */,
 				E95799A72AC2E9D8004A1F44 /* PlayViewController.swift in Sources */,
+				E9D1785D2ACD780000C9E520 /* NameTableViewCell.swift in Sources */,
 				E95799A92AC2EAD8004A1F44 /* HighScoreViewController.swift in Sources */,
 				E95799962AC2E2B6004A1F44 /* ViewController.swift in Sources */,
+				E9D1785F2ACD781900C9E520 /* PhotoTableViewCell.swift in Sources */,
 				E95799922AC2E2B6004A1F44 /* AppDelegate.swift in Sources */,
 				E95799942AC2E2B6004A1F44 /* SceneDelegate.swift in Sources */,
 				E9D178512ACC943700C9E520 /* CustomTableView.swift in Sources */,
 				E95799AB2AC2EB0C004A1F44 /* SettingsViewController.swift in Sources */,
+				E9D178562ACD75AB00C9E520 /* ExampleDataSource.swift in Sources */,
+				E9D178542ACD57C800C9E520 /* ExampleSection.swift in Sources */,
 				E9CADDC12ACAD4C000E51F06 /* StopwatchView.swift in Sources */,
+				E9D178592ACD77C000C9E520 /* ObstaclesTableViewCell.swift in Sources */,
 				E9CADDBF2ACABAA800E51F06 /* GestureAreaView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

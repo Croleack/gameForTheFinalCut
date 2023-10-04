@@ -18,9 +18,11 @@ class SettingsViewController: UIViewController {
     }
     
     private func setupViews() {
+	   title = "Настройки"
 	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
 	   
 	   customTableView.frame = view.frame
 	   view.addSubview(customTableView)
+
     }
 }
