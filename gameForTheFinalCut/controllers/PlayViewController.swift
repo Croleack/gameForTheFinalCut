@@ -4,12 +4,10 @@
 //
 //  Created by Enzhe Gaysina on 26.09.2023.
 //
-
 import UIKit
 
 class PlayViewController: UIViewController {
     
-    //игровое поле
     let gameFieldView: UIView = {
 	   let view = UIView()
 	   view.translatesAutoresizingMaskIntoConstraints = false
@@ -17,26 +15,24 @@ class PlayViewController: UIViewController {
     }()
     
     var redView: UIView!
-    
     var characterImageView: UIImageView!
-    
     var gestureAreaView: GestureAreaView!
-    
     var stopwatchView: StopwatchView!
     
+//    var isGameOver = false
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
 	   super.viewDidLoad()
-	   
-	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
-	   
 	   setupView()
     }
     
     // MARK: - Setup methods
     
     private func setupView() {
+	   
+	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
+	   
 	   view.addSubview(gameFieldView)
 	   setupGameFieldConstraints(gameFieldView: gameFieldView, in: view)
 	   
@@ -106,21 +102,43 @@ class PlayViewController: UIViewController {
 	   let viewWidth = view.frame.size.width
 	   redView = UIView(frame: CGRect(x: viewWidth / 2 - width / 2, y: -height, width: width, height: height))
 	   redView.backgroundColor = UIColor.red
-	   view.addSubview(redView)
+	   view.addSubview(redView)   
     }
     
     @objc
     private func animateRedView() {
+	   
+//	   guard !isGameOver else { return }
+	   
 	   let viewHeight = view.frame.size.height
 	   let redViewHeight: CGFloat = Constants.redViewWidth
 	   
-	   UIView.animate(withDuration: 1.0, animations: {
+	   UIView.animate(withDuration: Constants.timeIntervalRedView, animations: {
 		  self.redView.frame.origin.y = viewHeight
-		  
 	   }) { (finished) in
 		  self.redView.frame.origin.y = -redViewHeight
+//		  if !self.isGameOver {
+//			 self.detectCollision()
+//		  }
 	   }
     }
+    
+//    private func detectCollision() {
+//	   if let redView = redView, let characterImageView = characterImageView {
+//		  if redView.frame.intersects(characterImageView.frame) {
+//			 // Столкновение произошло
+//			 handleCollision()
+//		  }
+//	   }
+//    }
+//
+//    private func handleCollision() {
+//	   isGameOver = true
+//	   redView.layer.removeAllAnimations()
+//	   stopwatchView.stop()
+//	   gestureAreaView?.isUserInteractionEnabled = false
+//    }
+
     
 //MARK: - all button functions
     

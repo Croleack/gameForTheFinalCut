@@ -67,6 +67,10 @@ class StopwatchView: UIView {
 	   let timeString = String(format: "Очки %02d:%02d", minutes, seconds)
 	   label.text = timeString
     }
+    
+    func stop() {
+	   stopTimer()
+    }
 }
 
 // MARK: - Constants
