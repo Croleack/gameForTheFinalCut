@@ -11,12 +11,6 @@ class GameSpeedTableViewCell: UITableViewCell {
     
     static let cellID = "GameSpeedTableViewCell"
     
-    private let speedImageView: UIImageView = {
-	   let imageView = UIImageView()
-	   imageView.translatesAutoresizingMaskIntoConstraints = false
-	   return imageView
-    }()
-    
     private let nameLabel: UILabel = {
 	   let label = UILabel()
 	   label.translatesAutoresizingMaskIntoConstraints = false
@@ -36,12 +30,10 @@ class GameSpeedTableViewCell: UITableViewCell {
     
     private func setupViews() {
 	   selectionStyle = .none
-	   addSubview(speedImageView)
 	   addSubview(nameLabel)
     }
     
     func configure(with model: GameSpeedModel) {
-	   speedImageView.image = UIImage(named: model.image)
 	   nameLabel.text = model.name
     }
     
@@ -49,12 +41,8 @@ class GameSpeedTableViewCell: UITableViewCell {
     
     private func setConstraints() {
 	   NSLayoutConstraint.activate([
-		  speedImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-		  speedImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-		  speedImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-		  speedImageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.9),
-		  
-		  nameLabel.leadingAnchor.constraint(equalTo: speedImageView.trailingAnchor, constant: 10),
+		  nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+		  nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
 		  nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
 		  nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
 	   ])

@@ -10,7 +10,6 @@ import UIKit
 class ViewController: UIViewController {
     
     enum ButtonType: String {
-	   
 	   case play = "Играть"
 	   case highScore = "Таблица рекордов"
 	   case settings = "Настройки"
@@ -20,6 +19,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
 	   super.viewDidLoad()
 	   
+	   setupView()
+    }
+    
+    // MARK: - Setup View
+    private func setupView() {
 	   let backgroundImage = UIImageView(image: UIImage(named: "backgroundImage"))
 	   backgroundImage.contentMode = .scaleAspectFill
 	   backgroundImage.frame = view.bounds
@@ -27,7 +31,9 @@ class ViewController: UIViewController {
 	   
 	   let buttonTypes: [ButtonType] = [.play, .highScore, .settings]
 	   
-	   let buttons = buttonTypes.map { createButton(withTitle: $0.rawValue, backgroundColor: UIColor(named: "mainColor") ?? .gray) }
+	   let buttons = buttonTypes.map {
+		  createButton(withTitle: $0.rawValue, backgroundColor: UIColor(named: "mainColor") ?? .gray)
+	   }
 	   
 	   let stackView = UIStackView(arrangedSubviews: buttons)
 	   stackView.axis = .vertical
@@ -57,7 +63,6 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
 	   super.viewWillAppear(animated)
 	   
-	   
 	   navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
@@ -75,7 +80,8 @@ class ViewController: UIViewController {
 	   return button
     }
      
-    @objc func playButtonTapped(sender: UIButton) {
+    @objc
+    func playButtonTapped(sender: UIButton) {
 	   switch sender.tag {
 	   case 0:
 		  let playViewController = PlayViewController()

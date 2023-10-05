@@ -31,43 +31,48 @@ class PlayViewController: UIViewController {
 	   
 	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
 	   
+	   setupView()
+    }
+    
+    // MARK: - Setup methods
+    
+    private func setupView() {
 	   view.addSubview(gameFieldView)
 	   setupGameFieldConstraints(gameFieldView: gameFieldView, in: view)
 	   
 	   createRedView(width: Constants.redViewWidth, height: Constants.redViewHeight)
-	   Timer.scheduledTimer(timeInterval: Constants.timeIntervalRedView, target: self, selector: #selector(animateRedView), userInfo: nil, repeats: true)
-	   
+	   Timer.scheduledTimer(timeInterval: Constants.timeIntervalRedView, target: self, selector: #selector(
+		  animateRedView), userInfo: nil, repeats: true)
 	   
 	   self.characterImageView = createCharacterImageView()
-	   gameFieldView.addSubview(self.characterImageView)
+	   gameFieldView.addSubview(self.characterImageView!)
 	   
 	   gestureAreaView = GestureAreaView()
-	   gestureAreaView.translatesAutoresizingMaskIntoConstraints = false
-	   view.addSubview(gestureAreaView)
+	   gestureAreaView?.translatesAutoresizingMaskIntoConstraints = false
+	   view.addSubview(gestureAreaView!)
 	   
 	   setupStopwatchView()
 	   
-	   
 	   NSLayoutConstraint.activate([
-		  gestureAreaView.topAnchor.constraint(equalTo: view.topAnchor),
-		  gestureAreaView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-		  gestureAreaView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-		  gestureAreaView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-	   ])
+		  gestureAreaView?.topAnchor.constraint(equalTo: view.topAnchor),
+		  gestureAreaView?.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+		  gestureAreaView?.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+		  gestureAreaView?.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+	   ].compactMap { $0 })
 	   
-	   gestureAreaView.topAreaTapHandler = { [weak self] in
+	   gestureAreaView?.topAreaTapHandler = { [weak self] in
 		  self?.moveCharacterUp()
 	   }
 	   
-	   gestureAreaView.leftAreaTapHandler = { [weak self] in
+	   gestureAreaView?.leftAreaTapHandler = { [weak self] in
 		  self?.moveCharacterLeft()
 	   }
 	   
-	   gestureAreaView.rightAreaTapHandler = { [weak self] in
+	   gestureAreaView?.rightAreaTapHandler = { [weak self] in
 		  self?.moveCharacterRight()
 	   }
 	   
-	   gestureAreaView.bottomAreaTapHandler = { [weak self] in
+	   gestureAreaView?.bottomAreaTapHandler = { [weak self] in
 		  self?.moveCharacterDown()
 	   }
     }
@@ -86,7 +91,12 @@ class PlayViewController: UIViewController {
     private func createCharacterImageView() -> UIImageView {
 	   let characterImageView = UIImageView(image: UIImage(named: "characterImage"))
 	   characterImageView.contentMode = .scaleAspectFit
-	   characterImageView.frame = CGRect(x: Constants.characterXandYView, y: Constants.characterXandYView, width: Constants.characterWidth, height: Constants.characterHeight)
+	   characterImageView.frame = CGRect(
+		  x: Constants.characterXandYView,
+		  y: Constants.characterXandYView,
+		  width: Constants.characterWidth,
+		  height: Constants.characterHeight
+	   )
 	   return characterImageView
     }
     
@@ -99,7 +109,8 @@ class PlayViewController: UIViewController {
 	   view.addSubview(redView)
     }
     
-    @objc private func animateRedView() {
+    @objc
+    private func animateRedView() {
 	   let viewHeight = view.frame.size.height
 	   let redViewHeight: CGFloat = Constants.redViewWidth
 	   
@@ -113,21 +124,24 @@ class PlayViewController: UIViewController {
     
 //MARK: - all button functions
     
-    @objc private func moveCharacterUp() {
+    @objc
+    private func moveCharacterUp() {
 	   let minY = gameFieldView.frame.minY
 	   if characterImageView.frame.minY - Constants.movementStep >= minY {
 		  characterImageView.center.y -= Constants.movementStep
 	   }
     }
     
-    @objc private func moveCharacterDown() {
+    @objc
+    private func moveCharacterDown() {
 	   let maxY = gameFieldView.frame.maxY
 	   if characterImageView.frame.maxY + Constants.movementStep <= maxY {
 		  characterImageView.center.y += Constants.movementStep
 	   }
     }
     
-    @objc private func moveCharacterLeft() {
+    @objc
+    private func moveCharacterLeft() {
 	   let minX = gameFieldView.frame.minX
 	   if characterImageView.frame.minX - Constants.movementStep >= minX {
 		  characterImageView.center.x -= Constants.movementStep
@@ -135,16 +149,16 @@ class PlayViewController: UIViewController {
 	   characterImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
     }
     
-    @objc private func moveCharacterRight() {
+    @objc
+    private func moveCharacterRight() {
 	   let maxX = gameFieldView.frame.maxX
 	   if characterImageView.frame.maxX + Constants.movementStep <= maxX {
 		  characterImageView.center.x += Constants.movementStep
 	   }
-	   
-	   characterImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
-	   
+	   characterImageView.transform = CGAffineTransform(scaleX: 1, y: 1)   
     }
     //MARK: - setupStopwatchView
+    
     private func setupStopwatchView() {
 	   stopwatchView = StopwatchView()
 	   stopwatchView.translatesAutoresizingMaskIntoConstraints = false
