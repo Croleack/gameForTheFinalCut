@@ -19,7 +19,7 @@ class PlayViewController: UIViewController {
     var gestureAreaView: GestureAreaView!
     var stopwatchView: StopwatchView!
     
-//    var isGameOver = false
+    var isGameOver = false
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -37,6 +37,7 @@ class PlayViewController: UIViewController {
 	   setupGameFieldConstraints(gameFieldView: gameFieldView, in: view)
 	   
 	   createRedView(width: Constants.redViewWidth, height: Constants.redViewHeight)
+	   createDisplayLink()
 	   Timer.scheduledTimer(timeInterval: Constants.timeIntervalRedView, target: self, selector: #selector(
 		  animateRedView), userInfo: nil, repeats: true)
 	   
@@ -102,13 +103,13 @@ class PlayViewController: UIViewController {
 	   let viewWidth = view.frame.size.width
 	   redView = UIView(frame: CGRect(x: viewWidth / 2 - width / 2, y: -height, width: width, height: height))
 	   redView.backgroundColor = UIColor.red
-	   view.addSubview(redView)   
+	   view.addSubview(redView)
     }
     
     @objc
     private func animateRedView() {
 	   
-//	   guard !isGameOver else { return }
+	   guard !isGameOver else { return }
 	   
 	   let viewHeight = view.frame.size.height
 	   let redViewHeight: CGFloat = Constants.redViewWidth
@@ -117,27 +118,40 @@ class PlayViewController: UIViewController {
 		  self.redView.frame.origin.y = viewHeight
 	   }) { (finished) in
 		  self.redView.frame.origin.y = -redViewHeight
-//		  if !self.isGameOver {
-//			 self.detectCollision()
-//		  }
+		  if !self.isGameOver {
+		  }
 	   }
     }
     
-//    private func detectCollision() {
-//	   if let redView = redView, let characterImageView = characterImageView {
-//		  if redView.frame.intersects(characterImageView.frame) {
-//			 // Столкновение произошло
-//			 handleCollision()
-//		  }
-//	   }
-//    }
-//
-//    private func handleCollision() {
-//	   isGameOver = true
-//	   redView.layer.removeAllAnimations()
-//	   stopwatchView.stop()
-//	   gestureAreaView?.isUserInteractionEnabled = false
-//    }
+    private func createDisplayLink() {
+	   let displayLink = CADisplayLink(target: self, selector: #selector(step))
+	   displayLink.add(to: .current, forMode: .default)
+    }
+    
+    @objc
+    private func step(displayLink:CADisplayLink) {
+	   if isGameOver {
+		  return
+	   } else {
+		  if detectCollision(view: redView)  {
+			 handleCollision()
+		  }
+	   }
+    }
+    
+    private func detectCollision(view: UIView) -> Bool {
+	   if !isGameOver, let squareFrame = view.layer.presentation()?.frame, let characterFrame = characterImageView.layer.presentation()?.frame {
+		  return squareFrame.intersects(characterFrame)
+	   }
+	   return false
+    }
+
+    private func handleCollision() {
+	   isGameOver = true
+	   redView.layer.removeAllAnimations()
+	   stopwatchView.stop()
+	   gestureAreaView?.isUserInteractionEnabled = false
+    }
 
     
 //MARK: - all button functions
@@ -195,8 +209,8 @@ fileprivate extension PlayViewController {
     enum Constants {
 	   static let redViewWidth: CGFloat = 70.0
 	   static let redViewHeight: CGFloat = 70.0
-	   static let characterWidth: CGFloat = 100
-	   static let characterHeight: CGFloat = 100
+	   static let characterWidth: CGFloat = 70
+	   static let characterHeight: CGFloat = 70
 	   static let characterXandYView: CGFloat = 300
 	   static let movementStep: CGFloat = 50.0
 	   static let timeIntervalRedView = 1.5
