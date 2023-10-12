@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
     private let backgroundColor: UIColor = UIColor(named: "secondaryColor") ?? .gray
     
     private var settingsData: [(section: String, items: [String])] = [
-	   ("Общие настройки", ["Имя игрока", "Аватарка игрока"]),
+	   ("Общие настройки", ["Имя игрока"]),
 	   ("Персонаж", ["Отважная девочка", "Смешной динозавр"]),
 	   ("Цвет препятствия", ["Зеленый", "Оранжевый", "Розовый"]),
 	   ("Сложность игры", ["Easy", "Normal", "Hard"]),
@@ -26,6 +26,7 @@ class SettingsViewController: UIViewController {
 	   tableView.backgroundColor = .systemBackground
 	   tableView.allowsSelection = true
 	   tableView.register(CustomViewCell.self, forCellReuseIdentifier: CustomViewCell.identifier)
+	   tableView.register(UITextFieldCell.self, forCellReuseIdentifier: UITextFieldCell.identifier)
 	   return tableView
     }()
     //MARK: - Lifecycle
@@ -49,7 +50,6 @@ class SettingsViewController: UIViewController {
 		  tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
 		  tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
 		  tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-		  
 	   ])
     }
 }
@@ -68,32 +68,66 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 	   let sectionData = settingsData[indexPath.section]
 	   let item = sectionData.items[indexPath.row]
 	   
-	   guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomViewCell.identifier, for: indexPath) as? CustomViewCell else {
-		  fatalError("The TableView could not dequeue a CustomViewCell in SettingsViewController")
+	   if item == "Имя игрока" {
+		  let cell = tableView.dequeueReusableCell(
+			 withIdentifier: UITextFieldCell.identifier, for: indexPath) as! UITextFieldCell
+		  cell.configure(with: "Введите свое имя")
+		  cell.textField.delegate = self
+		  return cell
+	   } else {
+		  guard let cell = tableView.dequeueReusableCell(
+			 withIdentifier: CustomViewCell.identifier, for: indexPath) as? CustomViewCell else {
+			 fatalError("The TableView could not dequeue a CustomViewCell in SettingsViewController")
+		  }
+		  cell.configure(with: item)
+		  return cell
 	   }
-	   
-	   cell.configure(with: item)
-	   
-	   return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 	   return settingsData[section].section
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-	   let footerView = UIView()
-	   let subTitleLabel = UILabel()
-	   subTitleLabel.font = .boldSystemFont(ofSize: 16)
-	   subTitleLabel.textColor = .darkGray
-	   footerView.addSubview(subTitleLabel)
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+	   let headerView = UIView()
+	   // Фон заголовка (сюда надо вернуться)
+	   headerView.backgroundColor = .clear
 	   
-	   subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+	   let titleLabel = UILabel()
+	   titleLabel.text = settingsData[section].section
+	   titleLabel.font = .boldSystemFont(ofSize: Constants.titleLabelFont)
+	   titleLabel.textColor = .darkGray
+	   titleLabel.translatesAutoresizingMaskIntoConstraints = false
+	   headerView.addSubview(titleLabel)
+	   
 	   NSLayoutConstraint.activate([
-		  subTitleLabel.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 16),
-		  subTitleLabel.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
+		  titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: Constants.constraintsTitleLabelLeadingAnchor),
+		  titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Constants.constraintsTitleLabelBottomAnchor)
 	   ])
 	   
-	   return footerView
+	   return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+	   return Constants.tableViewHeightForHeaderInSection
+    }
+}
+
+extension SettingsViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+	   // Обработка ввода имени игрока и сохранение данных СЮДА НАДО ВЕРНУТЬСЯ
+	   return true
+    }
+}
+
+// MARK: - Constants
+
+fileprivate extension SettingsViewController {
+    
+    enum Constants {
+	   static let titleLabelFont: CGFloat = 16.0
+	   static let constraintsTitleLabelLeadingAnchor: CGFloat = 16.0
+	   static let constraintsTitleLabelBottomAnchor: CGFloat = -8.0
+	   static let tableViewHeightForHeaderInSection: CGFloat = 20.0
     }
 }

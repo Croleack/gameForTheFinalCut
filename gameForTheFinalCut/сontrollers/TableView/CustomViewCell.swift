@@ -9,19 +9,20 @@ import UIKit
 
 class CustomViewCell: UITableViewCell {
 
+    //MARK: - Variables
     static var identifier: String {"\(Self.self)"}
     
     private let myLabelView: UILabel = {
 	   let lv = UILabel()
 	   lv.textColor = .label
 	   lv.textAlignment = .left
-	   lv.font = .systemFont(ofSize: 12)
 	   lv.text = "Error"
 	   lv.numberOfLines = 0
 	   
 	   return lv
     }()
     
+    //MARK: - init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 	   super.init(style: style, reuseIdentifier: reuseIdentifier)
 	   self.setupUI()
@@ -31,6 +32,7 @@ class CustomViewCell: UITableViewCell {
 	   fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - functions
     public func configure(with label: String) {
 	   self.myLabelView.text = label
     }

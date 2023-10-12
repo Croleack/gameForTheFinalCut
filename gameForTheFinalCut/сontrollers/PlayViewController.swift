@@ -181,7 +181,7 @@ class PlayViewController: UIViewController {
 	   }
 	   characterImageView.transform = CGAffineTransform(scaleX: -1, y: 1)
     }
-    
+
     @objc
     private func moveCharacterRight() {
 	   let maxX = gameFieldView.frame.maxX

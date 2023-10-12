@@ -18,6 +18,7 @@
 		E9CADDC12ACAD4C000E51F06 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */; };
 		E9FBF4B12AD7FCDB00542E2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */; };
 		E9FBF4B32AD7FD3A00542E2C /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBF4B22AD7FD3A00542E2C /* PlayViewController.swift */; };
+		E9FBF4B52AD83BC400542E2C /* UITextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBF4B42AD83BC400542E2C /* UITextFieldCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StopwatchView.swift; path = gameForTheFinalCut/StopwatchView.swift; sourceTree = SOURCE_ROOT; };
 		E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E9FBF4B22AD7FD3A00542E2C /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		E9FBF4B42AD83BC400542E2C /* UITextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,11 +80,11 @@
 		E95799A52AC2E9AB004A1F44 /* сontrollers */ = {
 			isa = PBXGroup;
 			children = (
-				E95799A82AC2EAD8004A1F44 /* HighScoreViewController.swift */,
-				E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */,
-				E97E8C3C2AD7EA2600F6A7E1 /* CustomViewCell.swift */,
+				E9FBF4B82AD8441500542E2C /* TableView */,
 				E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */,
 				E9FBF4B22AD7FD3A00542E2C /* PlayViewController.swift */,
+				E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */,
+				E95799A82AC2EAD8004A1F44 /* HighScoreViewController.swift */,
 			);
 			path = "сontrollers";
 			sourceTree = "<group>";
@@ -112,6 +114,15 @@
 				E95799932AC2E2B6004A1F44 /* SceneDelegate.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		E9FBF4B82AD8441500542E2C /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				E9FBF4B42AD83BC400542E2C /* UITextFieldCell.swift */,
+				E97E8C3C2AD7EA2600F6A7E1 /* CustomViewCell.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +204,7 @@
 				E97E8C3D2AD7EA2600F6A7E1 /* CustomViewCell.swift in Sources */,
 				E9FBF4B12AD7FCDB00542E2C /* ViewController.swift in Sources */,
 				E9CADDBF2ACABAA800E51F06 /* GestureAreaView.swift in Sources */,
+				E9FBF4B52AD83BC400542E2C /* UITextFieldCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
