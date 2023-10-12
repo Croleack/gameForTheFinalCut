@@ -8,6 +8,8 @@ import UIKit
 
 class PlayViewController: UIViewController {
     
+    //MARK: - Variables
+    
     let gameFieldView: UIView = {
 	   let view = UIView()
 	   view.translatesAutoresizingMaskIntoConstraints = false

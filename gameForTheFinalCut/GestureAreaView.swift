@@ -9,6 +9,7 @@ import UIKit
 
 class GestureAreaView: UIView {
     
+    //MARK: - Variables
     var topAreaView: UIView!
     var bottomAreaView: UIView!
     var leftAreaView: UIView!
@@ -44,7 +45,6 @@ class GestureAreaView: UIView {
 	   leftAreaView = UIView()
 	   rightAreaView = UIView()
 	   
-	   // Настройка обработчиков жестов для областей
 	   let topGesture = UITapGestureRecognizer(target: self, action: #selector(handleTopAreaTap))
 	   topAreaView.addGestureRecognizer(topGesture)
 	   
@@ -75,19 +75,23 @@ class GestureAreaView: UIView {
     
     //MARK: - gesture handlers
     
-    @objc private func handleTopAreaTap() {
+    @objc
+    private func handleTopAreaTap() {
 	   topAreaTapHandler?()
     }
     
-    @objc private func handleBottomAreaTap() {
+    @objc
+    private func handleBottomAreaTap() {
 	   bottomAreaTapHandler?()
     }
     
-    @objc private func handleLeftAreaTap() {
+    @objc
+    private func handleLeftAreaTap() {
 	   leftAreaTapHandler?()
     }
     
-    @objc private func handleRightAreaTap() {
+    @objc
+    private func handleRightAreaTap() {
 	   rightAreaTapHandler?()
     }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //MARK: - Variables
     enum ButtonType: String {
 	   case play = "Играть"
 	   case highScore = "Таблица рекордов"
