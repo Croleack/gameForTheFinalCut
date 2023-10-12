@@ -11,12 +11,13 @@ class SettingsViewController: UIViewController {
     
     //MARK: - Variables
     
-    private let variablesSettings = [
-	   "Имя игрока",
-	   "Аватарка игрока",
-	   "Цвет преграды",
-	   "Выбор персонажа",
-	   "Сложность игры"
+    private let backgroundColor: UIColor = UIColor(named: "secondaryColor") ?? .gray
+    
+    private var settingsData: [(section: String, items: [String])] = [
+	   ("Общие настройки", ["Имя игрока", "Аватарка игрока"]),
+	   ("Персонаж", ["Отважная девочка", "Смешной динозавр"]),
+	   ("Цвет препятствия", ["Зеленый", "Оранжевый", "Розовый"]),
+	   ("Сложность игры", ["Easy", "Normal", "Hard"]),
     ]
     
     //MARK: - UI Components
@@ -38,7 +39,7 @@ class SettingsViewController: UIViewController {
     
     //MARK: - Setup UI
     private func setupUI() {
-	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
+	   tableView.backgroundColor = backgroundColor
 	   
 	   self.view.addSubview(tableView)
 	   tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,22 +55,45 @@ class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+	   return settingsData.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-	   return self.variablesSettings.count
+	   return settingsData[section].items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+	   let sectionData = settingsData[indexPath.section]
+	   let item = sectionData.items[indexPath.row]
+	   
 	   guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomViewCell.identifier, for: indexPath) as? CustomViewCell else {
 		  fatalError("The TableView could not dequeue a CustomViewCell in SettingsViewController")
 	   }
 	   
-	   let settings = self.variablesSettings[indexPath.row]
-	   cell.configure(with: settings)
+	   cell.configure(with: item)
 	   
 	   return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-	   return UITableView.automaticDimension
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	   return settingsData[section].section
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+	   let footerView = UIView()
+	   let subTitleLabel = UILabel()
+	   subTitleLabel.font = .boldSystemFont(ofSize: 16)
+	   subTitleLabel.textColor = .darkGray
+	   footerView.addSubview(subTitleLabel)
+	   
+	   subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+	   NSLayoutConstraint.activate([
+		  subTitleLabel.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: 16),
+		  subTitleLabel.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
+	   ])
+	   
+	   return footerView
     }
 }
