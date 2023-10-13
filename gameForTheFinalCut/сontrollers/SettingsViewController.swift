@@ -12,7 +12,6 @@ class SettingsViewController: UIViewController {
     //MARK: - Variables
     
     private let backgroundColor: UIColor = UIColor(named: "secondaryColor") ?? .gray
-    
     private var settingsData: [(section: String, items: [String])] = [
 	   ("Общие настройки", ["Имя игрока"]),
 	   ("Персонаж", ["Отважная девочка", "Смешной динозавр"]),

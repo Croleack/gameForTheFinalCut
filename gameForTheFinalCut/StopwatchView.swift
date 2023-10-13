@@ -13,7 +13,7 @@ class StopwatchView: UIView {
     
     private let label: UILabel = {
 	   let label = UILabel()
-	   label.textColor = .white
+	   label.textColor = UIColor(named: "orangeColor")
 	   label.font = UIFont.systemFont(ofSize: Constants.fontTextStyle)
 	   label.text = Constants.textLabel
 	   label.translatesAutoresizingMaskIntoConstraints = false
@@ -28,7 +28,6 @@ class StopwatchView: UIView {
 		  label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.constraintsTrailingAnchor),
 		  label.topAnchor.constraint(equalTo: topAnchor, constant: Constants.constraintsTopAnchor)
 	   ])
-	   
 	   startTimer()
     }
     
@@ -40,10 +39,8 @@ class StopwatchView: UIView {
 		  label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.constraintsTrailingAnchor),
 		  label.topAnchor.constraint(equalTo: topAnchor, constant: Constants.constraintsTopAnchor)
 	   ])
-	   
 	   startTimer()
     }
-    
     deinit {
 	   stopTimer()
     }
@@ -64,12 +61,18 @@ class StopwatchView: UIView {
     private func updateLabel() {
 	   let minutes = Int(elapsedTime) / Constants.translateOfTime
 	   let seconds = Int(elapsedTime) % Constants.translateOfTime
-	   let timeString = String(format: "Очки %02d:%02d", minutes, seconds)
+	   let timeString = String(format: "Ваше время %02d:%02d", minutes, seconds)
 	   label.text = timeString
     }
-    
+
     func stop() {
 	   stopTimer()
+    }
+    
+    func getTimeString() -> String {
+	   let minutes = Int(elapsedTime) / Constants.translateOfTime
+	   let seconds = Int(elapsedTime) % Constants.translateOfTime
+	   return String(format: "Ваше время %02d:%02d", minutes, seconds)
     }
 }
 
@@ -80,7 +83,7 @@ fileprivate extension StopwatchView {
     enum Constants {
 	   static let translateOfTime = 60
 	   static let elapsedTimeInterval = 0.0
-	   static let textLabel = "Очки 00:00"
+	   static let textLabel = "Ваше время 00:00"
 	   static let fontTextStyle: CGFloat = 20.0
 	   static let constraintsTopAnchor: CGFloat = 10.0
 	   static let constraintsTrailingAnchor: CGFloat = -10.0

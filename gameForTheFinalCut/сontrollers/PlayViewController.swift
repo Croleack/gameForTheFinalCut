@@ -9,6 +9,7 @@ import UIKit
 
 class PlayViewController: UIViewController {
     
+    //MARK: - Variables
     let gameFieldView: UIView = {
 	   let view = UIView()
 	   view.translatesAutoresizingMaskIntoConstraints = false
@@ -28,6 +29,12 @@ class PlayViewController: UIViewController {
 	   setupView()
     }
     
+    //MARK: - viewWillAppear
+    override func viewWillAppear(_ animated: Bool) {
+	   super.viewWillAppear(animated)
+	   navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
     // MARK: - Setup methods
     
     private func setupView() {
@@ -45,11 +52,12 @@ class PlayViewController: UIViewController {
 	   self.characterImageView = createCharacterImageView()
 	   gameFieldView.addSubview(self.characterImageView!)
 	   
+
+	   setupStopwatchView()
+	  
 	   gestureAreaView = GestureAreaView()
 	   gestureAreaView?.translatesAutoresizingMaskIntoConstraints = false
 	   view.addSubview(gestureAreaView!)
-	   
-	   setupStopwatchView()
 	   
 	   NSLayoutConstraint.activate([
 		  gestureAreaView?.topAnchor.constraint(equalTo: view.topAnchor),
@@ -152,8 +160,21 @@ class PlayViewController: UIViewController {
 	   redView.layer.removeAllAnimations()
 	   stopwatchView.stop()
 	   gestureAreaView?.isUserInteractionEnabled = false
+	   
+	   let alertController = UIAlertController(title: "Игра окончена,\n \(stopwatchView.getTimeString())", message: nil, preferredStyle: .alert)
+	   alertController.addAction(UIAlertAction(title: "Начать заново", style: .default, handler: { [weak self] _ in
+//здесь надо придумать логику перезапуска
+		  self?.isGameOver = false
+
+		  // Закрытие алертКонтроллера
+		  self?.dismiss(animated: true, completion: nil)
+	   }))
+	   alertController.addAction(UIAlertAction(title: "Посмотреть рекорды", style: .default, handler: { [weak self] _ in
+		  let highScoresViewController = HighScoreViewController()
+		  self?.navigationController?.pushViewController(highScoresViewController, animated: true)
+	   }))
+	   present(alertController, animated: true, completion: nil)
     }
-    
     
     //MARK: - all button functions
     

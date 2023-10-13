@@ -80,7 +80,7 @@
 		E95799A52AC2E9AB004A1F44 /* сontrollers */ = {
 			isa = PBXGroup;
 			children = (
-				E9FBF4B82AD8441500542E2C /* TableView */,
+				E9FBF4B82AD8441500542E2C /* TableViewCellSettings */,
 				E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */,
 				E9FBF4B22AD7FD3A00542E2C /* PlayViewController.swift */,
 				E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */,
@@ -116,13 +116,13 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		E9FBF4B82AD8441500542E2C /* TableView */ = {
+		E9FBF4B82AD8441500542E2C /* TableViewCellSettings */ = {
 			isa = PBXGroup;
 			children = (
 				E9FBF4B42AD83BC400542E2C /* UITextFieldCell.swift */,
 				E97E8C3C2AD7EA2600F6A7E1 /* CustomViewCell.swift */,
 			);
-			path = TableView;
+			path = TableViewCellSettings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -350,7 +350,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -378,7 +378,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
