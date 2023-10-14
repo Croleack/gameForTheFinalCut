@@ -1,5 +1,5 @@
 //
-//  StopwatchView.swift
+//  StopWatchView.swift
 //  gameForTheFinalCut
 //
 //  Created by Enzhe Gaysina on 02.10.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StopwatchView: UIView {
+class StopWatchView: UIView {
     private var timer: Timer?
     private var elapsedTime: TimeInterval = Constants.elapsedTimeInterval
     
@@ -28,13 +28,13 @@ class StopwatchView: UIView {
 		  label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.constraintsTrailingAnchor),
 		  label.topAnchor.constraint(equalTo: topAnchor, constant: Constants.constraintsTopAnchor)
 	   ])
-	   startTimer()
     }
     
     required init?(coder: NSCoder) {
 	   super.init(coder: coder)
 	   addSubview(label)
 	   
+	   translatesAutoresizingMaskIntoConstraints = false
 	   NSLayoutConstraint.activate([
 		  label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.constraintsTrailingAnchor),
 		  label.topAnchor.constraint(equalTo: topAnchor, constant: Constants.constraintsTopAnchor)
@@ -46,7 +46,8 @@ class StopwatchView: UIView {
     }
     // MARK: - timer functions
     
-    private func startTimer() {
+    func startTimer() {
+	   elapsedTime = .zero
 	   timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
 		  self?.elapsedTime += 1
 		  self?.updateLabel()
@@ -78,7 +79,7 @@ class StopwatchView: UIView {
 
 // MARK: - Constants
 
-fileprivate extension StopwatchView {
+fileprivate extension StopWatchView {
     
     enum Constants {
 	   static let translateOfTime = 60

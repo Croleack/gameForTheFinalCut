@@ -16,6 +16,8 @@ class HighScoreViewController: UIViewController {
 	   table.dataSource = self
 	   table.delegate = self
 	   table.register(UITableViewCell.self, forCellReuseIdentifier: "Identifier")
+	   table.separatorStyle = .none
+	   
 	   
 	   return table
     }()
@@ -27,7 +29,7 @@ class HighScoreViewController: UIViewController {
 	   
 	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
 	   
-	   dataSource = ["Player", "Player2"]
+	   dataSource = ["Player", "Player2", "player3", "Player4"]
 	   
 	   view.addSubview(tableView)
 	   NSLayoutConstraint.activate([
@@ -55,9 +57,13 @@ extension HighScoreViewController: UITableViewDelegate, UITableViewDataSource {
 	   listConfiguration.text = model
 	   
 	   backgroundConfiguration.backgroundColor = UIColor(named: "secondaryColor")
+	   backgroundConfiguration.cornerRadius = 10.0
+	   backgroundConfiguration.backgroundInsets = .init(top: 5, leading: 5, bottom: 5, trailing: 5)
 	   
 	   cell.contentConfiguration = listConfiguration
 	   cell.backgroundConfiguration = backgroundConfiguration
+	   
+	   
 	   
 	   return cell
     }

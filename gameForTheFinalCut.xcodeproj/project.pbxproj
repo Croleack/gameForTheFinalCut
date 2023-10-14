@@ -13,8 +13,9 @@
 		E957999E2AC2E2B8004A1F44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E957999C2AC2E2B8004A1F44 /* LaunchScreen.storyboard */; };
 		E95799A92AC2EAD8004A1F44 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95799A82AC2EAD8004A1F44 /* HighScoreViewController.swift */; };
 		E95799AB2AC2EB0C004A1F44 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */; };
+		E967B0CB2ADAD89E0035E16F /* GameFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967B0CA2ADAD89E0035E16F /* GameFieldView.swift */; };
+		E967B0CD2ADAE8610035E16F /* RedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967B0CC2ADAE8610035E16F /* RedView.swift */; };
 		E97E8C3D2AD7EA2600F6A7E1 /* CustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E8C3C2AD7EA2600F6A7E1 /* CustomViewCell.swift */; };
-		E9CADDBF2ACABAA800E51F06 /* GestureAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CADDBE2ACABAA800E51F06 /* GestureAreaView.swift */; };
 		E9CADDC12ACAD4C000E51F06 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */; };
 		E9FBF4B12AD7FCDB00542E2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */; };
 		E9FBF4B32AD7FD3A00542E2C /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBF4B22AD7FD3A00542E2C /* PlayViewController.swift */; };
@@ -30,9 +31,10 @@
 		E957999F2AC2E2B8004A1F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E95799A82AC2EAD8004A1F44 /* HighScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E967B0CA2ADAD89E0035E16F /* GameFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFieldView.swift; sourceTree = "<group>"; };
+		E967B0CC2ADAE8610035E16F /* RedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedView.swift; sourceTree = "<group>"; };
 		E97E8C3C2AD7EA2600F6A7E1 /* CustomViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewCell.swift; sourceTree = "<group>"; };
-		E9CADDBE2ACABAA800E51F06 /* GestureAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GestureAreaView.swift; path = gameForTheFinalCut/GestureAreaView.swift; sourceTree = SOURCE_ROOT; };
-		E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StopwatchView.swift; path = gameForTheFinalCut/StopwatchView.swift; sourceTree = SOURCE_ROOT; };
+		E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StopwatchView.swift; path = gameForTheFinalCut/Modules/PlayScreen/Views/StopwatchView.swift; sourceTree = SOURCE_ROOT; };
 		E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E9FBF4B22AD7FD3A00542E2C /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		E9FBF4B42AD83BC400542E2C /* UITextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldCell.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		E95799902AC2E2B6004A1F44 /* gameForTheFinalCut */ = {
 			isa = PBXGroup;
 			children = (
+				E967B0C72ADAD8540035E16F /* Modules */,
 				E97E8C3B2AD7E96100F6A7E1 /* Supporting */,
 				E9D178A92ACEB65E00C9E520 /* Application */,
 				E95799AD2AC33A65004A1F44 /* Views */,
@@ -82,7 +85,6 @@
 			children = (
 				E9FBF4B82AD8441500542E2C /* TableViewCellSettings */,
 				E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */,
-				E9FBF4B22AD7FD3A00542E2C /* PlayViewController.swift */,
 				E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */,
 				E95799A82AC2EAD8004A1F44 /* HighScoreViewController.swift */,
 			);
@@ -92,8 +94,33 @@
 		E95799AD2AC33A65004A1F44 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E9CADDBE2ACABAA800E51F06 /* GestureAreaView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E967B0C72ADAD8540035E16F /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				E967B0C82ADAD86D0035E16F /* PlayScreen */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		E967B0C82ADAD86D0035E16F /* PlayScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E967B0C92ADAD88B0035E16F /* Views */,
+				E9FBF4B22AD7FD3A00542E2C /* PlayViewController.swift */,
+			);
+			path = PlayScreen;
+			sourceTree = "<group>";
+		};
+		E967B0C92ADAD88B0035E16F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E967B0CA2ADAD89E0035E16F /* GameFieldView.swift */,
 				E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */,
+				E967B0CC2ADAE8610035E16F /* RedView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,12 +226,13 @@
 				E9FBF4B32AD7FD3A00542E2C /* PlayViewController.swift in Sources */,
 				E95799922AC2E2B6004A1F44 /* AppDelegate.swift in Sources */,
 				E95799942AC2E2B6004A1F44 /* SceneDelegate.swift in Sources */,
+				E967B0CB2ADAD89E0035E16F /* GameFieldView.swift in Sources */,
 				E95799AB2AC2EB0C004A1F44 /* SettingsViewController.swift in Sources */,
 				E9CADDC12ACAD4C000E51F06 /* StopwatchView.swift in Sources */,
 				E97E8C3D2AD7EA2600F6A7E1 /* CustomViewCell.swift in Sources */,
 				E9FBF4B12AD7FCDB00542E2C /* ViewController.swift in Sources */,
-				E9CADDBF2ACABAA800E51F06 /* GestureAreaView.swift in Sources */,
 				E9FBF4B52AD83BC400542E2C /* UITextFieldCell.swift in Sources */,
+				E967B0CD2ADAE8610035E16F /* RedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
