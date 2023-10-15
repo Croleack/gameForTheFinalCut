@@ -18,20 +18,29 @@ class HighScoreViewController: UIViewController {
 	   table.register(UITableViewCell.self, forCellReuseIdentifier: "Identifier")
 	   table.separatorStyle = .none
 	   
-	   
 	   return table
     }()
     
     var dataSource: [String] = []
-    
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
 	   super.viewDidLoad()
 	   
+	   setupUI()
+    }
+    
+    //MARK: - methods
+    
+    fileprivate func setupUI() {
 	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
 	   
-	   dataSource = ["Player", "Player2", "player3", "Player4"]
+	   dataSource = ["Player", "Player2", "Player3", "Player4"]
 	   
 	   view.addSubview(tableView)
+	   tableViewConstraint()
+    }
+    
+    fileprivate func tableViewConstraint() {
 	   NSLayoutConstraint.activate([
 		  tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
 		  tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -57,16 +66,25 @@ extension HighScoreViewController: UITableViewDelegate, UITableViewDataSource {
 	   listConfiguration.text = model
 	   
 	   backgroundConfiguration.backgroundColor = UIColor(named: "secondaryColor")
-	   backgroundConfiguration.cornerRadius = 10.0
-	   backgroundConfiguration.backgroundInsets = .init(top: 5, leading: 5, bottom: 5, trailing: 5)
-	   
+	   backgroundConfiguration.cornerRadius = Constants.cellCornerRadius
+	   backgroundConfiguration.backgroundInsets = .init(
+		  top: Constants.cellCornerRadius,
+		  leading: Constants.cellCornerRadius,
+		  bottom: Constants.cellCornerRadius,
+		  trailing: Constants.cellCornerRadius
+		  )
 	   cell.contentConfiguration = listConfiguration
 	   cell.backgroundConfiguration = backgroundConfiguration
 	   
-	   
-	   
 	   return cell
     }
-    
-    
+}
+
+// MARK: - Constants
+
+fileprivate extension HighScoreViewController {
+    enum Constants {
+	   static let cellCornerRadius = 10.0
+	   static let cellBackgroundInsets: CGFloat = 5.0
+    }
 }
