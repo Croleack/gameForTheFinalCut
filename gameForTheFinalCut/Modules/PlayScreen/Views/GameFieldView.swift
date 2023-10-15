@@ -9,7 +9,7 @@ import UIKit
 
 class GameFieldView: UIView {
     
-    //MARK: - UIProperties
+    //MARK: - Variables
     
     let characterImageView: UIView = {
 	   let characterImageView = UIImageView(image: UIImage(named: "characterImage"))
@@ -107,18 +107,14 @@ private extension GameFieldView {
     }
 }
 
+// MARK: - Constants
 
 fileprivate extension GameFieldView {
     
     enum Constants {
-	   static let redViewWidth: CGFloat = 70.0
-	   static let redViewHeight: CGFloat = 70.0
 	   static let characterWidth: CGFloat = 70
 	   static let characterHeight: CGFloat = 70
 	   static let characterXandYView: CGFloat = 300
 	   static let movementStep: CGFloat = 50.0
-	   static let timeIntervalRedView = 1.5
-	   static let constraintsTopAnchorStopwatchView: CGFloat = -20.0
-	   static let constraintsTrailingAnchorStopwatchView: CGFloat = -10.0
     }
 }

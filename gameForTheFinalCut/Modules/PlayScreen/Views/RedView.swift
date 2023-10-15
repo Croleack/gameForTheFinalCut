@@ -37,6 +37,7 @@ class RedView: UIView {
 	   }
     }
 }
+// MARK: - Constants
 
 fileprivate extension RedView {
     

@@ -11,13 +11,9 @@ class SettingsViewController: UIViewController {
     
     //MARK: - Variables
     
+    private var playerName: String = ""
     private let backgroundColor: UIColor = UIColor(named: "secondaryColor") ?? .gray
-    private var settingsData: [(section: String, items: [String])] = [
-	   ("Общие настройки", ["Имя игрока"]),
-	   ("Персонаж", ["Отважная девочка", "Смешной динозавр"]),
-	   ("Цвет препятствия", ["Зеленый", "Оранжевый", "Розовый"]),
-	   ("Сложность игры", ["Easy", "Normal", "Hard"]),
-    ]
+    private var settingsData: SettingsData = SettingsData()
     
     //MARK: - UI Components
     private let tableView: UITableView = {
@@ -31,10 +27,11 @@ class SettingsViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
 	   super.viewDidLoad()
-	   self.setupUI()
 	   
+	   self.setupUI()
 	   self.tableView.delegate = self
 	   self.tableView.dataSource = self
+	   self.loadSelectedOptions()
     }
     
     //MARK: - Setup UI
@@ -56,35 +53,40 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-	   return settingsData.count
+	   return settingsData.sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-	   return settingsData[section].items.count
+	   return settingsData.sections[section].items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-	   let sectionData = settingsData[indexPath.section]
+	   let sectionData = settingsData.sections[indexPath.section]
 	   let item = sectionData.items[indexPath.row]
 	   
 	   if item == "Имя игрока" {
 		  let cell = tableView.dequeueReusableCell(
 			 withIdentifier: UITextFieldCell.identifier, for: indexPath) as! UITextFieldCell
-		  cell.configure(with: "Введите свое имя")
+		  cell.textField.text = playerName
 		  cell.textField.delegate = self
 		  return cell
 	   } else {
-		  guard let cell = tableView.dequeueReusableCell(
-			 withIdentifier: CustomViewCell.identifier, for: indexPath) as? CustomViewCell else {
-			 fatalError("The TableView could not dequeue a CustomViewCell in SettingsViewController")
-		  }
+		  let cell = tableView.dequeueReusableCell(withIdentifier: CustomViewCell.identifier,
+										   for: indexPath) as! CustomViewCell
 		  cell.configure(with: item)
+		  
+		  if let selectedOptionIndex = settingsData.selectedOptions[sectionData.sectionType],
+			selectedOptionIndex == indexPath.row {
+			 cell.accessoryType = .checkmark
+		  } else {
+			 cell.accessoryType = .none
+		  }
 		  return cell
 	   }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-	   return settingsData[section].section
+	   return settingsData.sections[section].section
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -93,28 +95,63 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 	   headerView.backgroundColor = .clear
 	   
 	   let titleLabel = UILabel()
-	   titleLabel.text = settingsData[section].section
+	   titleLabel.text = settingsData.sections[section].section
 	   titleLabel.font = .boldSystemFont(ofSize: Constants.titleLabelFont)
 	   titleLabel.textColor = .darkGray
 	   titleLabel.translatesAutoresizingMaskIntoConstraints = false
 	   headerView.addSubview(titleLabel)
 	   
 	   NSLayoutConstraint.activate([
-		  titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: Constants.constraintsTitleLabelLeadingAnchor),
-		  titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: Constants.constraintsTitleLabelBottomAnchor)
+		  titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor,
+									   constant: Constants.constraintsTitleLabelLeadingAnchor),
+		  titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor,
+									  constant: Constants.constraintsTitleLabelBottomAnchor)
 	   ])
 	   
 	   return headerView
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+	   let sectionData = settingsData.sections[indexPath.section]
+	   
+	   settingsData.selectedOptions[sectionData.sectionType] = indexPath.row
+	   
+	   tableView.reloadData()
+	   
+	   self.saveSelectedOptions()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 	   return Constants.tableViewHeightForHeaderInSection
     }
+    // MARK: - userDefaults
+    
+    func loadSelectedOptions() {
+	   if let selectedOptionsData = UserDefaults.standard.data(forKey: "selectedOptions") {
+		  if let selectedOptions = try? JSONDecoder().decode([SectionType: Int].self, from: selectedOptionsData) {
+			 settingsData.selectedOptions = selectedOptions
+		  }
+	   }
+	   if let playerName = UserDefaults.standard.string(forKey: "playerName") {
+		  self.playerName = playerName
+	   }
+    }
+    
+    func saveSelectedOptions() {
+	   if let selectedOptionsData = try? JSONEncoder().encode(settingsData.selectedOptions) {
+		  UserDefaults.standard.set(selectedOptionsData, forKey: "selectedOptions")
+	   }
+	   UserDefaults.standard.set(playerName, forKey: "playerName")
+    }
 }
 
 extension SettingsViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-	   // Обработка ввода имени игрока и сохранение данных СЮДА НАДО ВЕРНУТЬСЯ
+    func textField(_ textField: UITextField,
+			    shouldChangeCharactersIn range: NSRange,
+			    replacementString string: String) -> Bool {
+	   if let text = textField.text, let textRange = Range(range, in: text) {
+		  playerName = text.replacingCharacters(in: textRange, with: string)
+		  UserDefaults.standard.set(playerName, forKey: "playerName")
+	   }
 	   return true
     }
 }

@@ -14,7 +14,6 @@ class UITextFieldCell: UITableViewCell {
     
     let textField: UITextField = {
 	   let textField = UITextField()
-	   
 	   return textField
     }()
     
@@ -34,10 +33,14 @@ class UITextFieldCell: UITableViewCell {
 	   textField.translatesAutoresizingMaskIntoConstraints = false
 	   
 	   NSLayoutConstraint.activate([
-		  textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.constraintsTopAnchorUITextFieldCell),
-		  textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.constraintsLeadingAnchorUITextFieldCell),
-		  textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.constraintsTrailingAnchorUITextFieldCell),
-		  textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.constraintsBottomAnchorUITextFieldCell),
+		  textField.topAnchor.constraint(
+			 equalTo: contentView.topAnchor, constant: Constants.constraintsTopAnchorUITextFieldCell),
+		  textField.leadingAnchor.constraint(
+			 equalTo: contentView.leadingAnchor, constant: Constants.constraintsLeadingAnchorUITextFieldCell),
+		  textField.trailingAnchor.constraint(
+			 equalTo: contentView.trailingAnchor, constant: Constants.constraintsTrailingAnchorUITextFieldCell),
+		  textField.bottomAnchor.constraint(
+			 equalTo: contentView.bottomAnchor, constant: Constants.constraintsBottomAnchorUITextFieldCell),
 	   ])
     }
     func configure(with text: String) {

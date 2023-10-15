@@ -50,7 +50,8 @@ class CustomViewCell: UITableViewCell {
 	   ])
     }
     var cellHeight: CGFloat {
-	   let labelSize = myLabelView.sizeThatFits(CGSize(width: myLabelView.frame.width, height: CGFloat.greatestFiniteMagnitude))
+	   let labelSize = myLabelView.sizeThatFits(
+		  CGSize(width: myLabelView.frame.width, height: CGFloat.greatestFiniteMagnitude))
 	   return labelSize.height
     }
 }

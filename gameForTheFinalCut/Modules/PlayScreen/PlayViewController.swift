@@ -66,7 +66,6 @@ class PlayViewController: UIViewController {
 		  userInfo: nil,
 		  repeats: true
 	   )
-
 	   stopWatchView.startTimer()
     }
     
@@ -136,8 +135,10 @@ class PlayViewController: UIViewController {
 	   view.addSubview(stopWatchView)
 	   
 	   NSLayoutConstraint.activate([
-		  stopWatchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.constraintsTopAnchorStopwatchView),
-		  stopWatchView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: Constants.constraintsTrailingAnchorStopwatchView)
+		  stopWatchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+									  constant: Constants.constraintsTopAnchorStopwatchView),
+		  stopWatchView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+										  constant: Constants.constraintsTrailingAnchorStopwatchView)
 	   ])
     }
 }

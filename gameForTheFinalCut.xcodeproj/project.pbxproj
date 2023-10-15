@@ -15,6 +15,7 @@
 		E95799AB2AC2EB0C004A1F44 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */; };
 		E967B0CB2ADAD89E0035E16F /* GameFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967B0CA2ADAD89E0035E16F /* GameFieldView.swift */; };
 		E967B0CD2ADAE8610035E16F /* RedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967B0CC2ADAE8610035E16F /* RedView.swift */; };
+		E967B0DA2ADC15B60035E16F /* SectionStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967B0D92ADC15B60035E16F /* SectionStruct.swift */; };
 		E97E8C3D2AD7EA2600F6A7E1 /* CustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E8C3C2AD7EA2600F6A7E1 /* CustomViewCell.swift */; };
 		E9CADDC12ACAD4C000E51F06 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */; };
 		E9FBF4B12AD7FCDB00542E2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */; };
@@ -33,6 +34,7 @@
 		E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E967B0CA2ADAD89E0035E16F /* GameFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFieldView.swift; sourceTree = "<group>"; };
 		E967B0CC2ADAE8610035E16F /* RedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedView.swift; sourceTree = "<group>"; };
+		E967B0D92ADC15B60035E16F /* SectionStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionStruct.swift; sourceTree = "<group>"; };
 		E97E8C3C2AD7EA2600F6A7E1 /* CustomViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewCell.swift; sourceTree = "<group>"; };
 		E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StopwatchView.swift; path = gameForTheFinalCut/Modules/PlayScreen/Views/StopwatchView.swift; sourceTree = SOURCE_ROOT; };
 		E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,35 +75,18 @@
 				E967B0C72ADAD8540035E16F /* Modules */,
 				E97E8C3B2AD7E96100F6A7E1 /* Supporting */,
 				E9D178A92ACEB65E00C9E520 /* Application */,
-				E95799AD2AC33A65004A1F44 /* Views */,
-				E95799A52AC2E9AB004A1F44 /* сontrollers */,
 				E957999F2AC2E2B8004A1F44 /* Info.plist */,
 			);
 			path = gameForTheFinalCut;
 			sourceTree = "<group>";
 		};
-		E95799A52AC2E9AB004A1F44 /* сontrollers */ = {
-			isa = PBXGroup;
-			children = (
-				E9FBF4B82AD8441500542E2C /* TableViewCellSettings */,
-				E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */,
-				E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */,
-				E95799A82AC2EAD8004A1F44 /* HighScoreViewController.swift */,
-			);
-			path = "сontrollers";
-			sourceTree = "<group>";
-		};
-		E95799AD2AC33A65004A1F44 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		E967B0C72ADAD8540035E16F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E967B0D72ADC12C50035E16F /* MainScreen */,
 				E967B0C82ADAD86D0035E16F /* PlayScreen */,
+				E967B0D82ADC12FE0035E16F /* RecordScreen */,
+				E967B0D62ADC12950035E16F /* SettingsScreen */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -123,6 +108,31 @@
 				E967B0CC2ADAE8610035E16F /* RedView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E967B0D62ADC12950035E16F /* SettingsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E9FBF4B82AD8441500542E2C /* TableViewCellSettings */,
+				E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */,
+			);
+			path = SettingsScreen;
+			sourceTree = "<group>";
+		};
+		E967B0D72ADC12C50035E16F /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		E967B0D82ADC12FE0035E16F /* RecordScreen */ = {
+			isa = PBXGroup;
+			children = (
+				E95799A82AC2EAD8004A1F44 /* HighScoreViewController.swift */,
+			);
+			path = RecordScreen;
 			sourceTree = "<group>";
 		};
 		E97E8C3B2AD7E96100F6A7E1 /* Supporting */ = {
@@ -148,6 +158,7 @@
 			children = (
 				E9FBF4B42AD83BC400542E2C /* UITextFieldCell.swift */,
 				E97E8C3C2AD7EA2600F6A7E1 /* CustomViewCell.swift */,
+				E967B0D92ADC15B60035E16F /* SectionStruct.swift */,
 			);
 			path = TableViewCellSettings;
 			sourceTree = "<group>";
@@ -222,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E967B0DA2ADC15B60035E16F /* SectionStruct.swift in Sources */,
 				E95799A92AC2EAD8004A1F44 /* HighScoreViewController.swift in Sources */,
 				E9FBF4B32AD7FD3A00542E2C /* PlayViewController.swift in Sources */,
 				E95799922AC2E2B6004A1F44 /* AppDelegate.swift in Sources */,
