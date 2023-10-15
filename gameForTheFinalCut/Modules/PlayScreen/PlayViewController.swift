@@ -21,6 +21,7 @@ class PlayViewController: UIViewController {
     }()
     
     var stopWatchView = StopWatchView()
+    
     var timer: Timer?
    
     var isGameOver = false
@@ -105,9 +106,16 @@ class PlayViewController: UIViewController {
 	   timer?.invalidate()
 	   stopWatchView.stop()
 	   
+
+	   
+	   let playerTime = stopWatchView.getTimeString()
+	   UserDefaults.standard.set(playerTime, forKey: "playerTime")
+	   
+	   
 	   let alertController = UIAlertController(
 		  title: "Игра окончена,\n \(stopWatchView.getTimeString())",
 		  message: nil, preferredStyle: .alert
+	
 	   )
 	   alertController.addAction(
 		  UIAlertAction(

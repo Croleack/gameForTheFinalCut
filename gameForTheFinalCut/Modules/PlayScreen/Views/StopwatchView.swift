@@ -62,7 +62,7 @@ class StopWatchView: UIView {
     private func updateLabel() {
 	   let minutes = Int(elapsedTime) / Constants.translateOfTime
 	   let seconds = Int(elapsedTime) % Constants.translateOfTime
-	   let timeString = String(format: "Ваше время %02d:%02d", minutes, seconds)
+	   let timeString = String(format: "%02d:%02d", minutes, seconds)
 	   label.text = timeString
     }
 
@@ -73,7 +73,7 @@ class StopWatchView: UIView {
     func getTimeString() -> String {
 	   let minutes = Int(elapsedTime) / Constants.translateOfTime
 	   let seconds = Int(elapsedTime) % Constants.translateOfTime
-	   return String(format: "Ваше время %02d:%02d", minutes, seconds)
+	   return String(format: "%02d:%02d", minutes, seconds)
     }
 }
 
@@ -84,7 +84,7 @@ fileprivate extension StopWatchView {
     enum Constants {
 	   static let translateOfTime = 60
 	   static let elapsedTimeInterval = 0.0
-	   static let textLabel = "Ваше время 00:00"
+	   static let textLabel = "00:00"
 	   static let fontTextStyle: CGFloat = 20.0
 	   static let constraintsTopAnchor: CGFloat = 10.0
 	   static let constraintsTrailingAnchor: CGFloat = -10.0

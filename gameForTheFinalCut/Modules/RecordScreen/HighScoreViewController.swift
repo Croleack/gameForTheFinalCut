@@ -22,11 +22,22 @@ class HighScoreViewController: UIViewController {
     }()
     
     var dataSource: [String] = []
+    var playerName: String?
+    var playerTime: String?
+    var stopWatchView = StopWatchView()
+    var highScores: [(playerName: String, playerTime: String)] = []
     //MARK: - viewDidLoad
     override func viewDidLoad() {
 	   super.viewDidLoad()
 	   
 	   setupUI()
+	   
+	   if let savedPlayerName = UserDefaults.standard.string(forKey: "playerName") {
+		  playerName = savedPlayerName
+	   }
+	   if let savedPlayerTime = UserDefaults.standard.string(forKey: "playerTime") {
+		  playerTime = savedPlayerTime
+	   }
     }
     
     //MARK: - methods
@@ -34,10 +45,12 @@ class HighScoreViewController: UIViewController {
     fileprivate func setupUI() {
 	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
 	   
-	   dataSource = ["Player", "Player2", "Player3", "Player4"]
+	   dataSource = ["Player1", "Player2", "Player3", "Player4"]
 	   
 	   view.addSubview(tableView)
 	   tableViewConstraint()
+	   
+	   
     }
     
     fileprivate func tableViewConstraint() {
@@ -53,17 +66,22 @@ class HighScoreViewController: UIViewController {
 extension HighScoreViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-	   return dataSource.count
+	   return dataSource.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-	   
 	   let cell = tableView.dequeueReusableCell(withIdentifier: "Identifier", for: indexPath)
-	   let model = dataSource[indexPath.row]
 	   var listConfiguration = cell.defaultContentConfiguration()
 	   var backgroundConfiguration = cell.defaultBackgroundConfiguration()
 	   
-	   listConfiguration.text = model
+	   if indexPath.row == 0 {
+		  let playerNameText = playerName ?? "Player"
+		  let playerTimeText = playerTime ?? "00"
+		  listConfiguration.text = "Игрок: \(playerNameText) Время: \(playerTimeText)"
+	   } else {
+		  let model = dataSource[indexPath.row - 1]
+		  listConfiguration.text = model
+	   }
 	   
 	   backgroundConfiguration.backgroundColor = UIColor(named: "secondaryColor")
 	   backgroundConfiguration.cornerRadius = Constants.cellCornerRadius
@@ -72,7 +90,8 @@ extension HighScoreViewController: UITableViewDelegate, UITableViewDataSource {
 		  leading: Constants.cellCornerRadius,
 		  bottom: Constants.cellCornerRadius,
 		  trailing: Constants.cellCornerRadius
-		  )
+	   )
+	   
 	   cell.contentConfiguration = listConfiguration
 	   cell.backgroundConfiguration = backgroundConfiguration
 	   
