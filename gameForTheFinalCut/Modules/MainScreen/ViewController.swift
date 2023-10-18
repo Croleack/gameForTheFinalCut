@@ -91,6 +91,7 @@ class ViewController: UIViewController {
 		  navigationController?.pushViewController(highScoreViewController, animated: true)
 	   case 2:
 		  let settingsViewController = SettingsViewController()
+		  settingsViewController.delegate = self
 		  navigationController?.pushViewController(settingsViewController, animated: true)
 	   default:
 		  break
@@ -98,6 +99,13 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: SettingsDelegate {
+    func settingsDidUpdate(_ selectedItems: [SectionType: SectionStruct]) {
+	   // Здесь надо дработать
+	   print("Выбран персонаж: \(selectedItems[.character]?.selectedItem)")
+	   
+    }
+}
 // MARK: - Constants
 
 fileprivate extension ViewController {

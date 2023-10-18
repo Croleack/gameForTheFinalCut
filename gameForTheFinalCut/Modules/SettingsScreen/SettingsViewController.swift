@@ -7,13 +7,19 @@
 
 import UIKit
 
+protocol SettingsDelegate: AnyObject {
+    func settingsDidUpdate(_ selectedItems: [SectionType: SectionStruct])
+}
+
 class SettingsViewController: UIViewController {
+    
+    weak var delegate: SettingsDelegate?
     
     //MARK: - Variables
     
     private var playerName: String = ""
     private let backgroundColor: UIColor = UIColor(named: "secondaryColor") ?? .gray
-    private var settingsData: SettingsData = SettingsData()
+    var selectedItems: [SectionType: SectionStruct] = [:]
     
     //MARK: - UI Components
     private let tableView: UITableView = {
@@ -53,18 +59,24 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-	   return settingsData.sections.count
+	   return MockData.sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-	   return settingsData.sections[section].items.count
+	   guard let sectionType = SectionType(rawValue: section) else {
+		  return .zero
+	   }
+	   return MockData.sections[sectionType]?.sectionItems.count ?? .zero
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-	   let sectionData = settingsData.sections[indexPath.section]
-	   let item = sectionData.items[indexPath.row]
+	   guard let sectionType = SectionType(rawValue: indexPath.section) else {
+		  return UITextFieldCell()
+	   }
+	   let sectionData = MockData.sections[sectionType]
+	   let item = sectionData?.sectionItems[indexPath.row]
 	   
-	   if item == "Имя игрока" {
+	   if sectionType == .general {
 		  let cell = tableView.dequeueReusableCell(
 			 withIdentifier: UITextFieldCell.identifier, for: indexPath) as! UITextFieldCell
 		  cell.textField.text = playerName
@@ -73,29 +85,36 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 	   } else {
 		  let cell = tableView.dequeueReusableCell(withIdentifier: CustomViewCell.identifier,
 										   for: indexPath) as! CustomViewCell
-		  cell.configure(with: item)
-		  
-		  if let selectedOptionIndex = settingsData.selectedOptions[sectionData.sectionType],
-			selectedOptionIndex == indexPath.row {
+		  cell.configure(with: item ?? "error")
+		 
+		  let selectedItem = selectedItems[sectionType]?.selectedItem
+		  if indexPath.row == selectedItem {
 			 cell.accessoryType = .checkmark
 		  } else {
 			 cell.accessoryType = .none
 		  }
+		  
 		  return cell
 	   }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-	   return settingsData.sections[section].section
+	   guard let sectionType = SectionType(rawValue: section) else {
+		  return nil
+	   }
+	   return MockData.sections[sectionType]?.sectionTitle
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+	   guard let sectionType = SectionType(rawValue: section) else {
+		  return nil
+	   }
 	   let headerView = UIView()
 	   // Фон заголовка (сюда надо вернуться)
 	   headerView.backgroundColor = .clear
 	   
 	   let titleLabel = UILabel()
-	   titleLabel.text = settingsData.sections[section].section
+	   titleLabel.text = MockData.sections[sectionType]?.sectionTitle
 	   titleLabel.font = .boldSystemFont(ofSize: Constants.titleLabelFont)
 	   titleLabel.textColor = .darkGray
 	   titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -111,13 +130,21 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 	   return headerView
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-	   let sectionData = settingsData.sections[indexPath.section]
+	   guard let sectionType = SectionType(rawValue: indexPath.section) else {
+		  return
+	   }
+	   selectedItems[sectionType]?.selectedItem = indexPath.row
+	   	   
+	   let sectionData = MockData.sections[sectionType]
+	   selectedItems[sectionType] = SectionStruct(sectionType: sectionType, selectedItem: indexPath.row)
+	  
 	   
-	   settingsData.selectedOptions[sectionData.sectionType] = indexPath.row
 	   
 	   tableView.reloadData()
 	   
-	   self.saveSelectedOptions()
+	   saveSelectedOptions()
+
+	   delegate?.settingsDidUpdate(selectedItems)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -127,8 +154,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func loadSelectedOptions() {
 	   if let selectedOptionsData = UserDefaults.standard.data(forKey: "selectedOptions") {
-		  if let selectedOptions = try? JSONDecoder().decode([SectionType: Int].self, from: selectedOptionsData) {
-			 settingsData.selectedOptions = selectedOptions
+		  if let selectedOptions = try? JSONDecoder().decode([SectionType: SectionStruct].self, from: selectedOptionsData) {
+			 selectedItems = selectedOptions
 		  }
 	   }
 	   if let playerName = UserDefaults.standard.string(forKey: "playerName") {
@@ -137,7 +164,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func saveSelectedOptions() {
-	   if let selectedOptionsData = try? JSONEncoder().encode(settingsData.selectedOptions) {
+	   if let selectedOptionsData = try? JSONEncoder().encode(selectedItems) {
 		  UserDefaults.standard.set(selectedOptionsData, forKey: "selectedOptions")
 	   }
 	   UserDefaults.standard.set(playerName, forKey: "playerName")
