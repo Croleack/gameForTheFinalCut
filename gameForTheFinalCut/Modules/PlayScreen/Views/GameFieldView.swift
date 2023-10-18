@@ -11,7 +11,7 @@ class GameFieldView: UIView {
     
     //MARK: - Variables
     
-    let characterImageView: UIView = {
+    let characterImageView: UIImageView = {
 	   let characterImageView = UIImageView(image: UIImage(named: "characterImage"))
 	   characterImageView.contentMode = .scaleAspectFit
 	   characterImageView.frame = CGRect(
@@ -66,7 +66,13 @@ class GameFieldView: UIView {
 	   characterImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
     }
     
-    
+    func updateImage(_ selectedImageNumber: Int) {
+		  if selectedImageNumber == 0 {
+			characterImageView.image = UIImage(named: "characterImage")
+		  } else if selectedImageNumber == 1 {
+			characterImageView.image = UIImage(named: "characterSecondImage")
+		  }
+	   }
 }
 
 private extension GameFieldView {
@@ -105,6 +111,8 @@ private extension GameFieldView {
 		  moveCharacterDown()
 	   }
     }
+    
+
 }
 
 // MARK: - Constants

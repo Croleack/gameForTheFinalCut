@@ -57,27 +57,6 @@ enum SectionType: Int {
 struct SettingsData {
     var sectionTitle: String
     var sectionItems: [String]
-    
-//    init() {
-//	   sections = [
-//		  SectionStruct(section: "Введите свое имя",
-//					 sectionType: .general,
-//					 selectedItem: 0,
-//					 items: ["Имя игрока"]),
-//		  SectionStruct(section: "Персонаж",
-//					 sectionType: .character,
-//					 selectedItem: 0,
-//					 items: ["Отважная девочка", "Смешной динозавр"]),
-//		  SectionStruct(section: "Цвет препятствия",
-//					 sectionType: .obstacleColor,
-//					 selectedItem: 0,
-//					 items: ["Зеленый", "Оранжевый", "Розовый"]),
-//		  SectionStruct(section: "Сложность игры",
-//					 sectionType: .difficulty,
-//					 selectedItem: 0,
-//					 items: ["Easy", "Normal", "Hard"])
-//	   ]
-//    }
 }
 
 extension SectionType: Encodable, Decodable {

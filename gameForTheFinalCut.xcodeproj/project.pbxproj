@@ -18,7 +18,6 @@
 		E967B0DA2ADC15B60035E16F /* SectionStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967B0D92ADC15B60035E16F /* SectionStruct.swift */; };
 		E967B0DC2ADC55A90035E16F /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967B0DB2ADC55A90035E16F /* HighScore.swift */; };
 		E97E8C3D2AD7EA2600F6A7E1 /* CustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E8C3C2AD7EA2600F6A7E1 /* CustomViewCell.swift */; };
-		E9A99E312ADFEBE0009EE45C /* SettingsConfigureModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A99E302ADFEBE0009EE45C /* SettingsConfigureModels.swift */; };
 		E9CADDC12ACAD4C000E51F06 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */; };
 		E9FBF4B12AD7FCDB00542E2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */; };
 		E9FBF4B32AD7FD3A00542E2C /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBF4B22AD7FD3A00542E2C /* PlayViewController.swift */; };
@@ -39,7 +38,6 @@
 		E967B0D92ADC15B60035E16F /* SectionStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionStruct.swift; sourceTree = "<group>"; };
 		E967B0DB2ADC55A90035E16F /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
 		E97E8C3C2AD7EA2600F6A7E1 /* CustomViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewCell.swift; sourceTree = "<group>"; };
-		E9A99E302ADFEBE0009EE45C /* SettingsConfigureModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsConfigureModels.swift; sourceTree = "<group>"; };
 		E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StopwatchView.swift; path = gameForTheFinalCut/Modules/PlayScreen/Views/StopwatchView.swift; sourceTree = SOURCE_ROOT; };
 		E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E9FBF4B22AD7FD3A00542E2C /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 		E97E8C3B2AD7E96100F6A7E1 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				E967B0D92ADC15B60035E16F /* SectionStruct.swift */,
 				E957999C2AC2E2B8004A1F44 /* LaunchScreen.storyboard */,
 				E957999A2AC2E2B8004A1F44 /* Assets.xcassets */,
 			);
@@ -154,7 +151,7 @@
 		E9A99E2F2ADFEBBC009EE45C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E9A99E302ADFEBE0009EE45C /* SettingsConfigureModels.swift */,
+				E967B0D92ADC15B60035E16F /* SectionStruct.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -254,7 +251,6 @@
 				E95799922AC2E2B6004A1F44 /* AppDelegate.swift in Sources */,
 				E95799942AC2E2B6004A1F44 /* SceneDelegate.swift in Sources */,
 				E967B0CB2ADAD89E0035E16F /* GameFieldView.swift in Sources */,
-				E9A99E312ADFEBE0009EE45C /* SettingsConfigureModels.swift in Sources */,
 				E95799AB2AC2EB0C004A1F44 /* SettingsViewController.swift in Sources */,
 				E9CADDC12ACAD4C000E51F06 /* StopwatchView.swift in Sources */,
 				E97E8C3D2AD7EA2600F6A7E1 /* CustomViewCell.swift in Sources */,

@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var selectedItems: [SectionType: SectionStruct] = [:]
+    
     enum ButtonType: String {
 	   case play = "Играть"
 	   case highScore = "Таблица рекордов"
@@ -85,6 +87,7 @@ class ViewController: UIViewController {
 	   switch sender.tag {
 	   case 0:
 		  let playViewController = PlayViewController()
+		  playViewController.setDataStorage(items: selectedItems)
 		  navigationController?.pushViewController(playViewController, animated: true)
 	   case 1:
 		  let highScoreViewController = HighScoreViewController()
@@ -99,10 +102,11 @@ class ViewController: UIViewController {
     }
 }
 
+
 extension ViewController: SettingsDelegate {
-    func settingsDidUpdate(_ selectedItems: [SectionType: SectionStruct]) {
-	   // Здесь надо дработать
-	   print("Выбран персонаж: \(selectedItems[.character]?.selectedItem)")
+    func settingsDidUpdate(_ selectedItems: [SectionType: SectionStruct], selectedCharacter: Int?) {
+	   self.selectedItems = selectedItems
+	   print("\(selectedCharacter!)")
 	   
     }
 }

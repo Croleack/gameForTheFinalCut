@@ -149,6 +149,13 @@ class PlayViewController: UIViewController {
 										  constant: Constants.constraintsTrailingAnchorStopwatchView)
 	   ])
     }
+    
+    func setDataStorage(items:[SectionType: SectionStruct]) {
+	   if let selectedCharacter = items[.character]?.selectedItem {
+		  gameFieldView.updateImage(selectedCharacter)
+	   }
+	   
+    }
 }
 
 
