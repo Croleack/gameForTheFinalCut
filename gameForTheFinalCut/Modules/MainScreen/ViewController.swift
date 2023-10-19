@@ -104,9 +104,14 @@ class ViewController: UIViewController {
 
 
 extension ViewController: SettingsDelegate {
-    func settingsDidUpdate(_ selectedItems: [SectionType: SectionStruct], selectedCharacter: Int?) {
+ 
+    func settingsDidUpdate(_ selectedItems: [SectionType: SectionStruct],
+					  selectedCharacter: Int?,
+					  selectedDifficulty: Int?,
+					  selectedColor: Int?
+    ) {
 	   self.selectedItems = selectedItems
-	   print("\(selectedCharacter!)")
+	   print("\(selectedColor!)")
 	   
     }
 }

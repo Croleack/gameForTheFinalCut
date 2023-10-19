@@ -15,6 +15,7 @@ class PlayViewController: UIViewController {
 	   view.translatesAutoresizingMaskIntoConstraints = false
 	   return view
     }()
+    
     let redView: RedView = {
 	   let view = RedView()
 	   return view
@@ -23,7 +24,7 @@ class PlayViewController: UIViewController {
     var stopWatchView = StopWatchView()
     
     var timer: Timer?
-   
+    
     var isGameOver = false
     
     //MARK: - viewDidLoad
@@ -70,6 +71,16 @@ class PlayViewController: UIViewController {
 	   stopWatchView.startTimer()
     }
     
+    func updateDifficulty(_ selectedImageNumber: Int) {
+	   if selectedImageNumber == 0 {
+		  Constants.timeIntervalRedView = 3.0
+	   } else if selectedImageNumber == 1 {
+		  Constants.timeIntervalRedView = 2.0
+	   } else if selectedImageNumber == 2 {
+		  Constants.timeIntervalRedView = 1.0
+	   }
+    }
+    
     @objc
     func animateRedViewWithGameOverStatus() {
 	   redView.animateRedView(isGameOver)
@@ -106,7 +117,7 @@ class PlayViewController: UIViewController {
 	   timer?.invalidate()
 	   stopWatchView.stop()
 	   
-
+	   
 	   
 	   let playerTime = stopWatchView.getTimeString()
 	   UserDefaults.standard.set(playerTime, forKey: "playerTime")
@@ -115,7 +126,7 @@ class PlayViewController: UIViewController {
 	   let alertController = UIAlertController(
 		  title: "Игра окончена,\n \(stopWatchView.getTimeString())",
 		  message: nil, preferredStyle: .alert
-	
+		  
 	   )
 	   alertController.addAction(
 		  UIAlertAction(
@@ -153,18 +164,24 @@ class PlayViewController: UIViewController {
     func setDataStorage(items:[SectionType: SectionStruct]) {
 	   if let selectedCharacter = items[.character]?.selectedItem {
 		  gameFieldView.updateImage(selectedCharacter)
+		  
+		  if let selectedDifficulty = items[.difficulty]?.selectedItem {
+			 updateDifficulty(selectedDifficulty)
+			 
+			 if let selectedColor = items[.obstacleColor]?.selectedItem {
+				redView.updateColor(selectedColor)
+			 }
+		  }
 	   }
-	   
     }
 }
-
 
 // MARK: - Constants
 
 fileprivate extension PlayViewController {
     
     enum Constants {
-	   static let timeIntervalRedView = 1.5
+	   static var timeIntervalRedView = 1.5
 	   static let constraintsTopAnchorStopwatchView: CGFloat = -20.0
 	   static let constraintsTrailingAnchorStopwatchView: CGFloat = -10.0
     }

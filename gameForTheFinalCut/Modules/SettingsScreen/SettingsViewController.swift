@@ -8,7 +8,10 @@
 import UIKit
 
 protocol SettingsDelegate: AnyObject {
-    func settingsDidUpdate(_ selectedItems: [SectionType: SectionStruct], selectedCharacter: Int?)
+    func settingsDidUpdate(_ selectedItems: [SectionType: SectionStruct],
+					  selectedCharacter: Int?,
+					  selectedDifficulty: Int?,
+					  selectedColor: Int?)
 }
 
 class SettingsViewController: UIViewController {
@@ -143,7 +146,12 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 	   saveSelectedOptions()
 
 	   let selectedCharacter = selectedItems[.character]?.selectedItem
-	   delegate?.settingsDidUpdate(selectedItems, selectedCharacter: selectedCharacter)
+	   let selectedDifficulty = selectedItems[.difficulty]?.selectedItem
+	   let selectedColor = selectedItems[.obstacleColor]?.selectedItem
+	   delegate?.settingsDidUpdate(selectedItems,
+							 selectedCharacter: selectedCharacter,
+							 selectedDifficulty: selectedDifficulty,
+							 selectedColor: selectedColor)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

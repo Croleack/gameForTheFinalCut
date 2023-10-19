@@ -9,6 +9,19 @@ import UIKit
 
 class RedView: UIView {
     
+    var customBackgroundColor: UIColor?
+    
+        init() {
+    	   self.customBackgroundColor = UIColor(named: "greenColor") ?? .blue
+    	   super.init(frame: .zero)
+    	   // Установите фон с начальным цветом
+    	   self.backgroundColor = customBackgroundColor
+        }
+    
+        required init?(coder: NSCoder) {
+    	   fatalError("init(coder:) has not been implemented")
+        }
+    
     func make() {
 	   guard let viewWidth = superview?.frame.size.width else {
 		  return
@@ -19,7 +32,23 @@ class RedView: UIView {
 		  width: Constants.redViewWidth,
 		  height: Constants.redViewHeight
 	   )
-	   backgroundColor = UIColor.red
+    }
+    
+    func updateObstacleColor(_ color: UIColor) {
+	   backgroundColor = color
+    }
+    
+    func updateColor(_ selectedImageNumber: Int) {
+	   if selectedImageNumber == 0 {
+		  customBackgroundColor = UIColor(named: "greenColor")
+		  print("green")
+	   } else if selectedImageNumber == 1 {
+		  customBackgroundColor = UIColor(named: "orangeColor")
+		  print("orange")
+	   } else if selectedImageNumber == 2 {
+		  customBackgroundColor = UIColor(named: "pincColor")
+		  print("pinc")
+	   }
     }
     
     @objc
