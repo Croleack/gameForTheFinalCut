@@ -111,7 +111,6 @@ extension ViewController: SettingsDelegate {
 					  selectedColor: Int?
     ) {
 	   self.selectedItems = selectedItems
-	   print("\(selectedColor!)")
 	   
     }
 }

@@ -10,7 +10,6 @@ import UIKit
 class HighScoreViewController: UIViewController {
     
     lazy var tableView: UITableView = {
-	   
 	   let table = UITableView()
 	   table.translatesAutoresizingMaskIntoConstraints = false
 	   table.dataSource = self
@@ -21,11 +20,11 @@ class HighScoreViewController: UIViewController {
 	   return table
     }()
     
-    var dataSource: [String] = []
     var playerName: String?
     var playerTime: String?
     var stopWatchView = StopWatchView()
-    var highScores: [(playerName: String, playerTime: String)] = []
+    var highScores: [HighScore] = []
+    
     //MARK: - viewDidLoad
     override func viewDidLoad() {
 	   super.viewDidLoad()
@@ -38,19 +37,38 @@ class HighScoreViewController: UIViewController {
 	   if let savedPlayerTime = UserDefaults.standard.string(forKey: "playerTime") {
 		  playerTime = savedPlayerTime
 	   }
+	   if let savedHighScoresData = UserDefaults.standard.data(forKey: "highScores") {
+		  if let savedHighScores = try? JSONDecoder().decode([HighScore].self, from: savedHighScoresData) {
+			 highScores = savedHighScores
+		  }
+	   }
+	   if let playerName = playerName, let playerTime = playerTime {
+		  let newHighScore = HighScore(playerName: playerName, playerTime: playerTime)
+		  highScores.append(newHighScore)
+		  saveHighScores()
+	   }
     }
     
     //MARK: - methods
     
     fileprivate func setupUI() {
+	   
 	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
 	   
-	   dataSource = ["Player1", "Player2", "Player3", "Player4"]
+	   if let savedPlayerName = UserDefaults.standard.string(forKey: "playerName"),
+		 let savedPlayerTime = UserDefaults.standard.string(forKey: "playerTime") {
+		  let newHighScore = HighScore(playerName: savedPlayerName, playerTime: savedPlayerTime)
+		  highScores.append(newHighScore)
+	   }
 	   
 	   view.addSubview(tableView)
 	   tableViewConstraint()
-	   
-	   
+    }
+    
+    func saveHighScores() {
+	   if let highScoresData = try? JSONEncoder().encode(highScores) {
+		  UserDefaults.standard.set(highScoresData, forKey: "highScores")
+	   }
     }
     
     fileprivate func tableViewConstraint() {
@@ -66,7 +84,7 @@ class HighScoreViewController: UIViewController {
 extension HighScoreViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-	   return dataSource.count + 1
+	   return highScores.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,8 +97,8 @@ extension HighScoreViewController: UITableViewDelegate, UITableViewDataSource {
 		  let playerTimeText = playerTime ?? "00"
 		  listConfiguration.text = "Игрок: \(playerNameText) Время: \(playerTimeText)"
 	   } else {
-		  let model = dataSource[indexPath.row - 1]
-		  listConfiguration.text = model
+		  let highScore = highScores[indexPath.row - 1]
+		  listConfiguration.text = "Игрок: \(highScore.playerName) Время: \(highScore.playerTime)"
 	   }
 	   
 	   backgroundConfiguration.backgroundColor = UIColor(named: "secondaryColor")

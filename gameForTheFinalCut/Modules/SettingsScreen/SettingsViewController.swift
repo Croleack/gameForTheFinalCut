@@ -33,6 +33,14 @@ class SettingsViewController: UIViewController {
 	   tableView.register(UITextFieldCell.self, forCellReuseIdentifier: UITextFieldCell.identifier)
 	   return tableView
     }()
+    //сюда надо вернуться
+    private let imageUploadButton: UIButton = {
+	   let button = UIButton(type: .system)
+	   button.setTitle("Загрузить изображение", for: .normal)
+	   button.addTarget(self, action: #selector(uploadImage), for: .touchUpInside)
+	   return button
+    }()
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
 	   super.viewDidLoad()
@@ -50,13 +58,29 @@ class SettingsViewController: UIViewController {
 	   self.view.addSubview(tableView)
 	   tableView.translatesAutoresizingMaskIntoConstraints = false
 	   
+	   //здесь
+	   view.addSubview(imageUploadButton)
+	   imageUploadButton.translatesAutoresizingMaskIntoConstraints = false
+	   
 	   NSLayoutConstraint.activate([
 		  tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
 		  tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
 		  tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
 		  tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+		  //здесь
+		  imageUploadButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16),
+		  imageUploadButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 	   ])
     }
+    //здесь
+    @objc
+    private func uploadImage() {
+	   let imagePicker = UIImagePickerController()
+	   imagePicker.delegate = self
+	   imagePicker.sourceType = .photoLibrary
+	   present(imagePicker, animated: true, completion: nil)
+    }
+ 
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -187,6 +211,22 @@ extension SettingsViewController: UITextFieldDelegate {
 		  UserDefaults.standard.set(playerName, forKey: "playerName")
 	   }
 	   return true
+    }
+}
+
+//здесь
+extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:
+						 [UIImagePickerController.InfoKey: Any]) {
+	   if let image = info[.originalImage] as? UIImage {
+
+		  if let imageData = image.pngData() {
+			 UserDefaults.standard.set(imageData, forKey: playerName)
+			 tableView.reloadData()
+		  }
+	   }
+	   
+	   dismiss(animated: true, completion: nil)
     }
 }
 

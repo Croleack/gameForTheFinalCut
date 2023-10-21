@@ -14,7 +14,6 @@ class RedView: UIView {
         init() {
     	   self.customBackgroundColor = UIColor(named: "greenColor") ?? .blue
     	   super.init(frame: .zero)
-    	   // Установите фон с начальным цветом
     	   self.backgroundColor = customBackgroundColor
         }
     

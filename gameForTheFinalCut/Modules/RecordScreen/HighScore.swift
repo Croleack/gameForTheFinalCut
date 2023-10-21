@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct HighScore: Decodable, Encodable {
+struct HighScore: Codable {
     var playerName: String
     var playerTime: String
 }

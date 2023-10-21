@@ -22,9 +22,7 @@ class PlayViewController: UIViewController {
     }()
     
     var stopWatchView = StopWatchView()
-    
     var timer: Timer?
-    
     var isGameOver = false
     
     //MARK: - viewDidLoad
@@ -73,11 +71,11 @@ class PlayViewController: UIViewController {
     
     func updateDifficulty(_ selectedImageNumber: Int) {
 	   if selectedImageNumber == 0 {
-		  Constants.timeIntervalRedView = 3.0
+		  Constants.timeIntervalRedView = Constants.timeIntervalRedViewEasy
 	   } else if selectedImageNumber == 1 {
-		  Constants.timeIntervalRedView = 2.0
+		  Constants.timeIntervalRedView = Constants.timeIntervalRedViewNormal
 	   } else if selectedImageNumber == 2 {
-		  Constants.timeIntervalRedView = 1.0
+		  Constants.timeIntervalRedView = Constants.timeIntervalRedViewHard
 	   }
     }
     
@@ -116,8 +114,6 @@ class PlayViewController: UIViewController {
 	   isGameOver = true
 	   timer?.invalidate()
 	   stopWatchView.stop()
-	   
-	   
 	   
 	   let playerTime = stopWatchView.getTimeString()
 	   UserDefaults.standard.set(playerTime, forKey: "playerTime")
@@ -182,6 +178,9 @@ fileprivate extension PlayViewController {
     
     enum Constants {
 	   static var timeIntervalRedView = 1.5
+	   static var timeIntervalRedViewEasy = 2.2
+	   static var timeIntervalRedViewNormal = 1.7
+	   static var timeIntervalRedViewHard = 1.2
 	   static let constraintsTopAnchorStopwatchView: CGFloat = -20.0
 	   static let constraintsTrailingAnchorStopwatchView: CGFloat = -10.0
     }
