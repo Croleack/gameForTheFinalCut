@@ -21,9 +21,17 @@ class PlayViewController: UIViewController {
 	   return view
     }()
     
+    var redViews: [RedView] = []
+    
     var stopWatchView = StopWatchView()
     var timer: Timer?
-    var isGameOver = false
+    var isGameOver = false {
+	   didSet {
+		  self.redViews = []
+	   }
+    }
+    
+   private var gameDifficulty: GameDifficulty = .easy
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -49,9 +57,6 @@ class PlayViewController: UIViewController {
 	   view.addSubview(gameFieldView)
 	   gameFieldView.make()
 	   
-	   view.addSubview(redView)
-	   redView.make()
-	   
 	   createDisplayLink()
 	   startGame()
     }
@@ -71,17 +76,33 @@ class PlayViewController: UIViewController {
     
     func updateDifficulty(_ selectedImageNumber: Int) {
 	   if selectedImageNumber == 0 {
-		  Constants.timeIntervalRedView = Constants.timeIntervalRedViewEasy
+		  gameDifficulty = .easy
 	   } else if selectedImageNumber == 1 {
-		  Constants.timeIntervalRedView = Constants.timeIntervalRedViewNormal
+		  gameDifficulty = .normal
 	   } else if selectedImageNumber == 2 {
-		  Constants.timeIntervalRedView = Constants.timeIntervalRedViewHard
+		  gameDifficulty = .hard
 	   }
     }
     
     @objc
     func animateRedViewWithGameOverStatus() {
-	   redView.animateRedView(isGameOver)
+	   
+	   var time: Double = 0
+	   
+	   if time.truncatingRemainder(dividingBy: 3) == 0 || time == .zero{
+		  let redView = RedView()
+		  view.addSubview(redView)
+		  redView.make(CGFloat.random(in: 0...view.frame.width))
+		  redViews.append(redView)
+	   }
+	   
+	   time += 1
+	
+	   redViews.enumerated().forEach({ index, value in
+		  DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) + 1, execute: {
+			 value.animateRedView(self.isGameOver, self.gameDifficulty.speed)
+		  })
+	   })
     }
     
     private func createDisplayLink() {
@@ -94,17 +115,18 @@ class PlayViewController: UIViewController {
 	   if isGameOver {
 		  return
 	   } else {
-		  if detectCollision(view: redView)  {
-			 handleCollision()
-		  }
+		  redViews.forEach({ value in
+			 if detectCollision(view: value)  {
+				handleCollision()
+			 }
+		  })
 	   }
     }
     
     private func detectCollision(view: UIView) -> Bool {
 	   if !isGameOver,
 		 let squareFrame = view.layer.presentation()?.frame,
-		 let characterFrame = gameFieldView.characterImageView.layer.presentation()?.frame
-	   {
+		 let characterFrame = gameFieldView.characterImageView.layer.presentation()?.frame {
 		  return squareFrame.intersects(characterFrame)
 	   }
 	   return false
@@ -117,7 +139,6 @@ class PlayViewController: UIViewController {
 	   
 	   let playerTime = stopWatchView.getTimeString()
 	   UserDefaults.standard.set(playerTime, forKey: "playerTime")
-	   
 	   
 	   let alertController = UIAlertController(
 		  title: "Игра окончена,\n \(stopWatchView.getTimeString())",
@@ -178,10 +199,24 @@ fileprivate extension PlayViewController {
     
     enum Constants {
 	   static var timeIntervalRedView = 1.5
-	   static var timeIntervalRedViewEasy = 2.2
-	   static var timeIntervalRedViewNormal = 1.7
-	   static var timeIntervalRedViewHard = 1.2
 	   static let constraintsTopAnchorStopwatchView: CGFloat = -20.0
 	   static let constraintsTrailingAnchorStopwatchView: CGFloat = -10.0
+    }
+    
+    enum GameDifficulty: Double {
+	   case easy
+	   case normal
+	   case hard
+	   
+	   var speed: Double {
+		  switch self {
+		  case .easy:
+			 return 3.6
+		  case .normal:
+			 return 2.4
+		  case .hard:
+			 return 1.2
+		  }
+	   }
     }
 }

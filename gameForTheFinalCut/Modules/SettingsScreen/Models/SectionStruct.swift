@@ -8,6 +8,7 @@
 import UIKit
 
 struct SectionStruct: Codable {
+    
     let sectionTitle: String?
     let sectionType: SectionType
     var selectedItem: Int?

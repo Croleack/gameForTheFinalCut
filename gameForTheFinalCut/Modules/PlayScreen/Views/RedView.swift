@@ -12,7 +12,7 @@ class RedView: UIView {
     var customBackgroundColor: UIColor?
     
         init() {
-    	   self.customBackgroundColor = UIColor(named: "greenColor") ?? .blue
+    	   self.customBackgroundColor = UIColor(named: "pincColor") ?? .blue
     	   super.init(frame: .zero)
     	   self.backgroundColor = customBackgroundColor
         }
@@ -21,20 +21,18 @@ class RedView: UIView {
     	   fatalError("init(coder:) has not been implemented")
         }
     
-    func make() {
+    func make(_ xPosition: CGFloat) {
 	   guard let viewWidth = superview?.frame.size.width else {
 		  return
 	   }
+	   
+	   let x = xPosition - Constants.redViewWidth
 	   frame = CGRect(
-		  x: viewWidth / 2 - Constants.redViewWidth / 2,
+		  x: x < 0 ? xPosition : x,
 		  y: -Constants.redViewHeight,
 		  width: Constants.redViewWidth,
 		  height: Constants.redViewHeight
 	   )
-    }
-    
-    func updateObstacleColor(_ color: UIColor) {
-	   backgroundColor = color
     }
     
     func updateColor(_ selectedImageNumber: Int) {
@@ -51,7 +49,7 @@ class RedView: UIView {
     }
     
     @objc
-    func animateRedView(_ isGameOver: Bool) {
+    func animateRedView(_ isGameOver: Bool, _ speed: Double) {
 	   
 	   guard !isGameOver, let superView = superview else { return }
 	   
@@ -66,7 +64,6 @@ class RedView: UIView {
     }
 }
 // MARK: - Constants
-
 fileprivate extension RedView {
     
     enum Constants {

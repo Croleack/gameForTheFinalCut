@@ -111,8 +111,6 @@ private extension GameFieldView {
 		  moveCharacterDown()
 	   }
     }
-    
-
 }
 
 // MARK: - Constants
