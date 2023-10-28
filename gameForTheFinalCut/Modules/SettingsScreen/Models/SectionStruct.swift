@@ -31,7 +31,9 @@ struct MockData {
 		  sectionTitle: "Персонаж",
 		  sectionItems: [
 			 "Отважная девочка",
-			 "Смешной динозавр"]
+			 "Смешной динозавр",
+			 "Бородатый богатырь"
+		  ]
 	   ),
 	   .obstacleColor: SettingsData(
 		  sectionTitle: "Цвет препятствия",

@@ -71,6 +71,8 @@ class GameFieldView: UIView {
 			characterImageView.image = UIImage(named: "characterImage")
 		  } else if selectedImageNumber == 1 {
 			characterImageView.image = UIImage(named: "characterSecondImage")
+		  } else if selectedImageNumber == 2 {
+			 characterImageView.image = UIImage(named: "characterThirdImage")
 		  }
 	   }
 }

@@ -25,6 +25,7 @@ class PlayViewController: UIViewController {
     
     var stopWatchView = StopWatchView()
     var timer: Timer?
+    var time: Double = 0
     var isGameOver = false {
 	   didSet {
 		  self.redViews = []
@@ -74,12 +75,12 @@ class PlayViewController: UIViewController {
 	   stopWatchView.startTimer()
     }
     
-    func updateDifficulty(_ selectedImageNumber: Int) {
-	   if selectedImageNumber == 0 {
+    func updateDifficulty(_ selectedDifficultyNumber: Int) {
+	   if selectedDifficultyNumber == 0 {
 		  gameDifficulty = .easy
-	   } else if selectedImageNumber == 1 {
+	   } else if selectedDifficultyNumber == 1 {
 		  gameDifficulty = .normal
-	   } else if selectedImageNumber == 2 {
+	   } else if selectedDifficultyNumber == 2 {
 		  gameDifficulty = .hard
 	   }
     }
@@ -87,9 +88,8 @@ class PlayViewController: UIViewController {
     @objc
     func animateRedViewWithGameOverStatus() {
 	   
-	   var time: Double = 0
-	   
-	   if time.truncatingRemainder(dividingBy: 3) == 0 || time == .zero{
+	   time += Constants.timeIntervalRedView
+	   if time >= 3 {
 		  let redView = RedView()
 		  view.addSubview(redView)
 		  redView.make(CGFloat.random(in: 0...view.frame.width))
@@ -97,7 +97,6 @@ class PlayViewController: UIViewController {
 	   }
 	   
 	   time += 1
-	
 	   redViews.enumerated().forEach({ index, value in
 		  DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) + 1, execute: {
 			 value.animateRedView(self.isGameOver, self.gameDifficulty.speed)

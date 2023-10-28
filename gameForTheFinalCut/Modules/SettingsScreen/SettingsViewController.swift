@@ -38,6 +38,7 @@ class SettingsViewController: UIViewController {
 	   let button = UIButton(type: .system)
 	   button.setTitle("Загрузить изображение", for: .normal)
 	   button.addTarget(self, action: #selector(uploadImage), for: .touchUpInside)
+	   button.translatesAutoresizingMaskIntoConstraints = false
 	   return button
     }()
     
@@ -49,27 +50,25 @@ class SettingsViewController: UIViewController {
 	   self.tableView.delegate = self
 	   self.tableView.dataSource = self
 	   self.loadSelectedOptions()
+
     }
     
     //MARK: - Setup UI
     private func setupUI() {
 	   tableView.backgroundColor = backgroundColor
 	   
-	   self.view.addSubview(tableView)
-	   tableView.translatesAutoresizingMaskIntoConstraints = false
+	   let stackView = UIStackView(arrangedSubviews: [tableView, imageUploadButton])
+	   stackView.axis = .vertical  // Определите направление стека как вертикальное.
+	   stackView.spacing = 20  // Установите желаемый отступ между таблицей и кнопкой.
 	   
-	   //здесь
-	   view.addSubview(imageUploadButton)
-	   imageUploadButton.translatesAutoresizingMaskIntoConstraints = false
+	   view.addSubview(stackView)
+	   stackView.translatesAutoresizingMaskIntoConstraints = false
 	   
 	   NSLayoutConstraint.activate([
-		  tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
-		  tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-		  tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-		  tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-		  //здесь
-		  imageUploadButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 16),
-		  imageUploadButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+		  stackView.topAnchor.constraint(equalTo: self.view.topAnchor),
+		  stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+		  stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+		  stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
 	   ])
     }
     //здесь

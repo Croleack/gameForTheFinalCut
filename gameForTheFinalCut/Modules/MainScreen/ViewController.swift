@@ -102,7 +102,6 @@ class ViewController: UIViewController {
     }
 }
 
-
 extension ViewController: SettingsDelegate {
  
     func settingsDidUpdate(_ selectedItems: [SectionType: SectionStruct],

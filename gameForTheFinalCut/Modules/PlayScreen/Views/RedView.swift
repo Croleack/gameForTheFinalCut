@@ -35,14 +35,14 @@ class RedView: UIView {
 	   )
     }
     
-    func updateColor(_ selectedImageNumber: Int) {
-	   if selectedImageNumber == 0 {
+    func updateColor(_ selectedColorNumber: Int) {
+	   if selectedColorNumber == 0 {
 		  customBackgroundColor = UIColor(named: "greenColor")
 		  print("green")
-	   } else if selectedImageNumber == 1 {
+	   } else if selectedColorNumber == 1 {
 		  customBackgroundColor = UIColor(named: "orangeColor")
 		  print("orange")
-	   } else if selectedImageNumber == 2 {
+	   } else if selectedColorNumber == 2 {
 		  customBackgroundColor = UIColor(named: "pincColor")
 		  print("pinc")
 	   }
@@ -70,5 +70,9 @@ fileprivate extension RedView {
 	   static let timeIntervalRedView = 1.5
 	   static let redViewWidth: CGFloat = 70.0
 	   static let redViewHeight: CGFloat = 70.0
+    }
+    
+    enum ColorObstacle {
+	   case green, orange, pinc
     }
 }
