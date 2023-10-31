@@ -7,8 +7,8 @@
 
 import UIKit
 
-class RedView: UIView {
-    
+final class RedView: UIView {
+    //MARK: - Variables
     var customBackgroundColor: UIColor?
     
         init() {
@@ -22,9 +22,7 @@ class RedView: UIView {
         }
     
     func make(_ xPosition: CGFloat) {
-	   guard let viewWidth = superview?.frame.size.width else {
-		  return
-	   }
+	   guard let viewWidth = superview?.frame.size.width else { return }
 	   
 	   let x = xPosition - Constants.redViewWidth
 	   frame = CGRect(
@@ -76,3 +74,5 @@ fileprivate extension RedView {
 	   case green, orange, pinc
     }
 }
+
+

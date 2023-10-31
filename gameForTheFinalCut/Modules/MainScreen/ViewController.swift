@@ -7,30 +7,27 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
     var selectedItems: [SectionType: SectionStruct] = [:]
-    
-    enum ButtonType: String {
-	   case play = "Играть"
-	   case highScore = "Таблица рекордов"
-	   case settings = "Настройки"
-    }
-    
+
     //MARK: - viewDidLoad
     override func viewDidLoad() {
 	   super.viewDidLoad()
-	   
+	   setupBackground()
 	   setupView()
     }
     
     // MARK: - Setup View
-    private func setupView() {
+    private func setupBackground() {
 	   let backgroundImage = UIImageView(image: UIImage(named: "backgroundImage"))
 	   backgroundImage.contentMode = .scaleAspectFill
 	   backgroundImage.frame = view.bounds
 	   view.addSubview(backgroundImage)
-	   
+    }
+    
+    private func setupView() {
+	
 	   let buttonTypes: [ButtonType] = [.play, .highScore, .settings]
 	   
 	   let buttons = buttonTypes.map {
@@ -69,7 +66,7 @@ class ViewController: UIViewController {
     }
     
     //MARK: - all button functions
-    func createButton(withTitle title: String, backgroundColor: UIColor) -> UIButton {
+    private func createButton(withTitle title: String, backgroundColor: UIColor) -> UIButton {
 	   var configuration = UIButton.Configuration.plain()
 	   configuration.title = title
 	   configuration.baseBackgroundColor = backgroundColor
@@ -83,7 +80,7 @@ class ViewController: UIViewController {
     }
     
     @objc
-    func playButtonTapped(sender: UIButton) {
+    private func playButtonTapped(sender: UIButton) {
 	   switch sender.tag {
 	   case 0:
 		  let playViewController = PlayViewController()
@@ -99,6 +96,12 @@ class ViewController: UIViewController {
 	   default:
 		  break
 	   }
+    }
+    
+    enum ButtonType: String {
+	   case play = "Играть"
+	   case highScore = "Таблица рекордов"
+	   case settings = "Настройки"
     }
 }
 

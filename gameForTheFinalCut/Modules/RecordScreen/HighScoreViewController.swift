@@ -7,8 +7,8 @@
 
 import UIKit
 
-class HighScoreViewController: UIViewController {
-    
+final class HighScoreViewController: UIViewController {
+    //MARK: - Variables
     lazy var tableView: UITableView = {
 	   let table = UITableView()
 	   table.translatesAutoresizingMaskIntoConstraints = false
@@ -22,6 +22,9 @@ class HighScoreViewController: UIViewController {
     
     var playerName: String?
     var playerTime: String?
+    //вот
+    var selectedImage: UIImage?
+    
     var stopWatchView = StopWatchView()
     var highScores: [HighScore] = []
     
@@ -30,7 +33,12 @@ class HighScoreViewController: UIViewController {
 	   super.viewDidLoad()
 	   
 	   setupUI()
-	   
+	   setupRecords()
+    }
+    
+    //MARK: - functios
+    
+    private func setupRecords() {
 	   if let savedPlayerName = UserDefaults.standard.string(forKey: "playerName") {
 		  playerName = savedPlayerName
 	   }
@@ -49,9 +57,7 @@ class HighScoreViewController: UIViewController {
 	   }
     }
     
-    //MARK: - methods
-    
-    fileprivate func setupUI() {
+    private func setupUI() {
 	   
 	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
 	   
@@ -65,13 +71,13 @@ class HighScoreViewController: UIViewController {
 	   tableViewConstraint()
     }
     
-    func saveHighScores() {
+    private func saveHighScores() {
 	   if let highScoresData = try? JSONEncoder().encode(highScores) {
 		  UserDefaults.standard.set(highScoresData, forKey: "highScores")
 	   }
     }
     
-    fileprivate func tableViewConstraint() {
+    private func tableViewConstraint() {
 	   NSLayoutConstraint.activate([
 		  tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
 		  tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -79,8 +85,21 @@ class HighScoreViewController: UIViewController {
 		  tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 	   ])
     }
+    
+    func loadPlayerAvatar(forPlayerName playerName: String) -> UIImage? {
+	   if let url = FileManager.default.urls(
+		  for: .documentDirectory,
+		  in: .userDomainMask)
+		  .first?
+		  .appendingPathComponent(playerName + ".png"),
+		 let data = try? Data(contentsOf: url) {
+		  return UIImage(data: data)
+	   }
+	   return nil
+    }
 }
 
+//MARK: - UITableViewDelegate
 extension HighScoreViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -96,9 +115,17 @@ extension HighScoreViewController: UITableViewDelegate, UITableViewDataSource {
 		  let playerNameText = playerName ?? "Player"
 		  let playerTimeText = playerTime ?? "00"
 		  listConfiguration.text = "Игрок: \(playerNameText) Время: \(playerTimeText)"
+		  //здесь
+		  if let image = selectedImage {
+			 listConfiguration.image = image
+		  }
 	   } else {
 		  let highScore = highScores[indexPath.row - 1]
 		  listConfiguration.text = "Игрок: \(highScore.playerName) Время: \(highScore.playerTime)"
+		  //здесь
+		  if let playerAvatar = loadPlayerAvatar(forPlayerName: highScore.playerName) {
+			 listConfiguration.image = playerAvatar
+		  }
 	   }
 	   
 	   backgroundConfiguration.backgroundColor = UIColor(named: "secondaryColor")

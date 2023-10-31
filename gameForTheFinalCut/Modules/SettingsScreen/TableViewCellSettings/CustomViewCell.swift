@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomViewCell: UITableViewCell {
+final class CustomViewCell: UITableViewCell {
 
     //MARK: - Variables
     static var identifier: String {"\(Self.self)"}
@@ -17,7 +17,7 @@ class CustomViewCell: UITableViewCell {
 	   lv.textColor = .label
 	   lv.textAlignment = .left
 	   lv.text = "Error"
-	   lv.numberOfLines = 0
+	   lv.numberOfLines = .zero
 	   
 	   return lv
     }()

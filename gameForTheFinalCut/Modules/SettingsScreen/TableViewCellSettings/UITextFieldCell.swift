@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UITextFieldCell: UITableViewCell {
+final class UITextFieldCell: UITableViewCell {
     
     //MARK: - Variables
     static var identifier: String {"\(Self.self)"}
@@ -34,13 +34,17 @@ class UITextFieldCell: UITableViewCell {
 	   
 	   NSLayoutConstraint.activate([
 		  textField.topAnchor.constraint(
-			 equalTo: contentView.topAnchor, constant: Constants.constraintsTopAnchorUITextFieldCell),
+			 equalTo: contentView.topAnchor,
+			 constant: Constants.constraintsTopAnchorUITextFieldCell),
 		  textField.leadingAnchor.constraint(
-			 equalTo: contentView.leadingAnchor, constant: Constants.constraintsLeadingAnchorUITextFieldCell),
+			 equalTo: contentView.leadingAnchor,
+			 constant: Constants.constraintsLeadingAnchorUITextFieldCell),
 		  textField.trailingAnchor.constraint(
-			 equalTo: contentView.trailingAnchor, constant: Constants.constraintsTrailingAnchorUITextFieldCell),
+			 equalTo: contentView.trailingAnchor,
+			 constant: Constants.constraintsTrailingAnchorUITextFieldCell),
 		  textField.bottomAnchor.constraint(
-			 equalTo: contentView.bottomAnchor, constant: Constants.constraintsBottomAnchorUITextFieldCell),
+			 equalTo: contentView.bottomAnchor,
+			 constant: Constants.constraintsBottomAnchorUITextFieldCell),
 	   ])
     }
     func configure(with text: String) {

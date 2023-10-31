@@ -49,22 +49,17 @@ class PlayViewController: UIViewController {
 											    action: nil)
     }
     
-    // MARK: - Setup methods
+    //MARK: - functios
     
     private func setupView() {
-	   
 	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
-	   
 	   view.addSubview(gameFieldView)
 	   gameFieldView.make()
-	   
 	   createDisplayLink()
 	   startGame()
     }
     
-    // MARK: - methods
-    
-    func startGame() {
+    private func startGame() {
 	   timer = Timer.scheduledTimer(
 		  timeInterval: Constants.timeIntervalRedView,
 		  target: self,
@@ -75,7 +70,7 @@ class PlayViewController: UIViewController {
 	   stopWatchView.startTimer()
     }
     
-    func updateDifficulty(_ selectedDifficultyNumber: Int) {
+    private func updateDifficulty(_ selectedDifficultyNumber: Int) {
 	   if selectedDifficultyNumber == 0 {
 		  gameDifficulty = .easy
 	   } else if selectedDifficultyNumber == 1 {
@@ -140,7 +135,7 @@ class PlayViewController: UIViewController {
 	   UserDefaults.standard.set(playerTime, forKey: "playerTime")
 	   
 	   let alertController = UIAlertController(
-		  title: "Игра окончена,\n \(stopWatchView.getTimeString())",
+		  title: "Игра окончена,\n Время \(stopWatchView.getTimeString())",
 		  message: nil, preferredStyle: .alert
 		  
 	   )
@@ -203,9 +198,7 @@ fileprivate extension PlayViewController {
     }
     
     enum GameDifficulty: Double {
-	   case easy
-	   case normal
-	   case hard
+	   case easy, normal, hard
 	   
 	   var speed: Double {
 		  switch self {

@@ -1,86 +1,11 @@
 //
-//  SettingsViewController.swift
+//  UITableViewDelegate.swift
 //  gameForTheFinalCut
 //
-//  Created by Enzhe Gaysina on 26.09.2023.
+//  Created by Enzhe Gaysina on 31.10.2023.
 //
 
 import UIKit
-
-protocol SettingsDelegate: AnyObject {
-    func settingsDidUpdate(_ selectedItems: [SectionType: SectionStruct],
-					  selectedCharacter: Int?,
-					  selectedDifficulty: Int?,
-					  selectedColor: Int?)
-}
-
-class SettingsViewController: UIViewController {
-    
-    weak var delegate: SettingsDelegate?
-    
-    //MARK: - Variables
-    
-    private var playerName: String = ""
-    private let backgroundColor: UIColor = UIColor(named: "secondaryColor") ?? .gray
-    var selectedItems: [SectionType: SectionStruct] = [:]
-    
-    //MARK: - UI Components
-    private let tableView: UITableView = {
-	   let tableView = UITableView()
-	   tableView.backgroundColor = .systemBackground
-	   tableView.allowsSelection = true
-	   tableView.register(CustomViewCell.self, forCellReuseIdentifier: CustomViewCell.identifier)
-	   tableView.register(UITextFieldCell.self, forCellReuseIdentifier: UITextFieldCell.identifier)
-	   return tableView
-    }()
-    //сюда надо вернуться
-    private let imageUploadButton: UIButton = {
-	   let button = UIButton(type: .system)
-	   button.setTitle("Загрузить изображение", for: .normal)
-	   button.addTarget(self, action: #selector(uploadImage), for: .touchUpInside)
-	   button.translatesAutoresizingMaskIntoConstraints = false
-	   return button
-    }()
-    
-    //MARK: - Lifecycle
-    override func viewDidLoad() {
-	   super.viewDidLoad()
-	   
-	   self.setupUI()
-	   self.tableView.delegate = self
-	   self.tableView.dataSource = self
-	   self.loadSelectedOptions()
-
-    }
-    
-    //MARK: - Setup UI
-    private func setupUI() {
-	   tableView.backgroundColor = backgroundColor
-	   
-	   let stackView = UIStackView(arrangedSubviews: [tableView, imageUploadButton])
-	   stackView.axis = .vertical  // Определите направление стека как вертикальное.
-	   stackView.spacing = 20  // Установите желаемый отступ между таблицей и кнопкой.
-	   
-	   view.addSubview(stackView)
-	   stackView.translatesAutoresizingMaskIntoConstraints = false
-	   
-	   NSLayoutConstraint.activate([
-		  stackView.topAnchor.constraint(equalTo: self.view.topAnchor),
-		  stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-		  stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-		  stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-	   ])
-    }
-    //здесь
-    @objc
-    private func uploadImage() {
-	   let imagePicker = UIImagePickerController()
-	   imagePicker.delegate = self
-	   imagePicker.sourceType = .photoLibrary
-	   present(imagePicker, animated: true, completion: nil)
-    }
- 
-}
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -112,7 +37,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 		  let cell = tableView.dequeueReusableCell(withIdentifier: CustomViewCell.identifier,
 										   for: indexPath) as! CustomViewCell
 		  cell.configure(with: item ?? "error")
-		 
 		  let selectedItem = selectedItems[sectionType]?.selectedItem
 		  if indexPath.row == selectedItem {
 			 cell.accessoryType = .checkmark
@@ -155,19 +79,20 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 	   
 	   return headerView
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 	   guard let sectionType = SectionType(rawValue: indexPath.section) else {
 		  return
 	   }
 	   selectedItems[sectionType]?.selectedItem = indexPath.row
-	   	   
+	   
 	   let sectionData = MockData.sections[sectionType]
 	   selectedItems[sectionType] = SectionStruct(sectionType: sectionType, selectedItem: indexPath.row)
-	  
+	   
 	   tableView.reloadData()
 	   
 	   saveSelectedOptions()
-
+	   
 	   let selectedCharacter = selectedItems[.character]?.selectedItem
 	   let selectedDifficulty = selectedItems[.difficulty]?.selectedItem
 	   let selectedColor = selectedItems[.obstacleColor]?.selectedItem
@@ -184,7 +109,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func loadSelectedOptions() {
 	   if let selectedOptionsData = UserDefaults.standard.data(forKey: "selectedOptions") {
-		  if let selectedOptions = try? JSONDecoder().decode([SectionType: SectionStruct].self, from: selectedOptionsData) {
+		  if let selectedOptions = try? JSONDecoder().decode([SectionType: SectionStruct].self,
+												   from: selectedOptionsData) {
 			 selectedItems = selectedOptions
 		  }
 	   }
@@ -200,7 +126,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 	   UserDefaults.standard.set(playerName, forKey: "playerName")
     }
 }
-
+// MARK: - extension UITextFieldDelegate
 extension SettingsViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField,
 			    shouldChangeCharactersIn range: NSRange,
@@ -210,22 +136,6 @@ extension SettingsViewController: UITextFieldDelegate {
 		  UserDefaults.standard.set(playerName, forKey: "playerName")
 	   }
 	   return true
-    }
-}
-
-//здесь
-extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:
-						 [UIImagePickerController.InfoKey: Any]) {
-	   if let image = info[.originalImage] as? UIImage {
-
-		  if let imageData = image.pngData() {
-			 UserDefaults.standard.set(imageData, forKey: playerName)
-			 tableView.reloadData()
-		  }
-	   }
-	   
-	   dismiss(animated: true, completion: nil)
     }
 }
 

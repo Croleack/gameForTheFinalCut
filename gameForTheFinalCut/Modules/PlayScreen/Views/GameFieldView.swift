@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GameFieldView: UIView {
+final class GameFieldView: UIView {
     
     //MARK: - Variables
     
@@ -23,7 +23,7 @@ class GameFieldView: UIView {
 	   return characterImageView
     }()
     
-    //MARK: - public methods
+    //MARK: - public functions
     
     func make() {
 	   setupViews()
@@ -79,14 +79,12 @@ class GameFieldView: UIView {
 
 private extension GameFieldView {
     
-    func setupViews() {
+    private func setupViews() {
 	   addSubview(characterImageView)
     }
     
-    func setupConstraints() {
-	   guard let superView = superview else {
-		  return
-	   }
+    private func setupConstraints() {
+	   guard let superView = superview else { return }
 	   NSLayoutConstraint.activate([
 		  topAnchor.constraint(equalTo: superView.topAnchor),
 		  leadingAnchor.constraint(equalTo: superView.leadingAnchor),

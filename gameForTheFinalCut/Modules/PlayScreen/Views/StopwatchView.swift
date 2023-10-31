@@ -7,7 +7,8 @@
 
 import UIKit
 
-class StopWatchView: UIView {
+final class StopWatchView: UIView {
+    //MARK: - Variables
     private var timer: Timer?
     private var elapsedTime: TimeInterval = Constants.elapsedTimeInterval
     
@@ -25,8 +26,10 @@ class StopWatchView: UIView {
 	   addSubview(label)
 	   
 	   NSLayoutConstraint.activate([
-		  label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.constraintsTrailingAnchor),
-		  label.topAnchor.constraint(equalTo: topAnchor, constant: Constants.constraintsTopAnchor)
+		  label.trailingAnchor.constraint(equalTo: trailingAnchor,
+								    constant: Constants.constraintsTrailingAnchor),
+		  label.topAnchor.constraint(equalTo: topAnchor,
+							    constant: Constants.constraintsTopAnchor)
 	   ])
     }
     
@@ -36,8 +39,10 @@ class StopWatchView: UIView {
 	   
 	   translatesAutoresizingMaskIntoConstraints = false
 	   NSLayoutConstraint.activate([
-		  label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Constants.constraintsTrailingAnchor),
-		  label.topAnchor.constraint(equalTo: topAnchor, constant: Constants.constraintsTopAnchor)
+		  label.trailingAnchor.constraint(equalTo: trailingAnchor,
+								    constant: Constants.constraintsTrailingAnchor),
+		  label.topAnchor.constraint(equalTo: topAnchor,
+							    constant: Constants.constraintsTopAnchor)
 	   ])
 	   startTimer()
     }
@@ -48,7 +53,8 @@ class StopWatchView: UIView {
     
     func startTimer() {
 	   elapsedTime = .zero
-	   timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
+	   timer = Timer.scheduledTimer(withTimeInterval: 1.0,
+							  repeats: true) { [weak self] timer in
 		  self?.elapsedTime += 1
 		  self?.updateLabel()
 	   }
