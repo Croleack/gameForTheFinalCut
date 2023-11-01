@@ -7,19 +7,23 @@
 
 import UIKit
 
-final class CustomViewCell: UITableViewCell {
+struct CustomViewCellData: SettingsCellCommonDataProtocol {
+    let text: String
+}
 
+final class CustomViewCell: UITableViewCell, SettingsCellCommonProtocol {
+    
     //MARK: - Variables
     static var identifier: String {"\(Self.self)"}
     
     private let myLabelView: UILabel = {
-	   let lv = UILabel()
-	   lv.textColor = .label
-	   lv.textAlignment = .left
-	   lv.text = "Error"
-	   lv.numberOfLines = .zero
+	   let labelView = UILabel()
+	   labelView.textColor = .label
+	   labelView.textAlignment = .left
+	   labelView.text = "Error"
+	   labelView.numberOfLines = .zero
 	   
-	   return lv
+	   return labelView
     }()
     
     //MARK: - init
@@ -33,8 +37,12 @@ final class CustomViewCell: UITableViewCell {
     }
     
     //MARK: - functions
-    public func configure(with label: String) {
-	   self.myLabelView.text = label
+    
+    func configure(_ model: SettingsCellCommonDataProtocol?) {
+	   guard let model = model as? CustomViewCellData else {
+		  return
+	   }
+	   myLabelView.text = model.text
     }
     
     private func setupUI() {

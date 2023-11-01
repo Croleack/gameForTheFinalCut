@@ -7,7 +7,11 @@
 
 import UIKit
 
-final class UITextFieldCell: UITableViewCell {
+struct UITextFieldCellData: SettingsCellCommonDataProtocol {
+    let text: String
+}
+
+final class UITextFieldCell: UITableViewCell, SettingsCellCommonProtocol {
     
     //MARK: - Variables
     static var identifier: String {"\(Self.self)"}
@@ -47,8 +51,12 @@ final class UITextFieldCell: UITableViewCell {
 			 constant: Constants.constraintsBottomAnchorUITextFieldCell),
 	   ])
     }
-    func configure(with text: String) {
-	   textField.text = text
+    
+    func configure(_ model: SettingsCellCommonDataProtocol?) {
+	   guard let model = model as? UITextFieldCellData else {
+		  return
+	   }
+	   textField.text = model.text
     }
 }
 

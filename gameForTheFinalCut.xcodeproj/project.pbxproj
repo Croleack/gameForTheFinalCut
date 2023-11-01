@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E92CC5B82AF115EC00A3F803 /* UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92CC5B72AF115EC00A3F803 /* UITableViewDelegate.swift */; };
 		E95799922AC2E2B6004A1F44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95799912AC2E2B6004A1F44 /* AppDelegate.swift */; };
 		E95799942AC2E2B6004A1F44 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95799932AC2E2B6004A1F44 /* SceneDelegate.swift */; };
 		E957999B2AC2E2B8004A1F44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E957999A2AC2E2B8004A1F44 /* Assets.xcassets */; };
@@ -20,13 +19,17 @@
 		E967B0DC2ADC55A90035E16F /* HighScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967B0DB2ADC55A90035E16F /* HighScore.swift */; };
 		E97E8C3D2AD7EA2600F6A7E1 /* CustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97E8C3C2AD7EA2600F6A7E1 /* CustomViewCell.swift */; };
 		E9CADDC12ACAD4C000E51F06 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */; };
+		E9F71C5C2AF2A21B0035BDDC /* SettingsScreenCellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F71C5B2AF2A21B0035BDDC /* SettingsScreenCellBuilder.swift */; };
+		E9F71C5E2AF2A2710035BDDC /* CustomButtonViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F71C5D2AF2A2710035BDDC /* CustomButtonViewCell.swift */; };
+		E9F71C612AF2A29B0035BDDC /* SettingsCellCommonProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F71C602AF2A29B0035BDDC /* SettingsCellCommonProtocol.swift */; };
+		E9F71C632AF2A2AF0035BDDC /* SettingsCellCommonDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F71C622AF2A2AF0035BDDC /* SettingsCellCommonDataProtocol.swift */; };
+		E9F71C662AF2A3C30035BDDC /* UIImageView + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F71C652AF2A3C30035BDDC /* UIImageView + extension.swift */; };
 		E9FBF4B12AD7FCDB00542E2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */; };
 		E9FBF4B32AD7FD3A00542E2C /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBF4B22AD7FD3A00542E2C /* PlayViewController.swift */; };
 		E9FBF4B52AD83BC400542E2C /* UITextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FBF4B42AD83BC400542E2C /* UITextFieldCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E92CC5B72AF115EC00A3F803 /* UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewDelegate.swift; sourceTree = "<group>"; };
 		E957998E2AC2E2B6004A1F44 /* gameForTheFinalCut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gameForTheFinalCut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E95799912AC2E2B6004A1F44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E95799932AC2E2B6004A1F44 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +44,11 @@
 		E967B0DB2ADC55A90035E16F /* HighScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScore.swift; sourceTree = "<group>"; };
 		E97E8C3C2AD7EA2600F6A7E1 /* CustomViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewCell.swift; sourceTree = "<group>"; };
 		E9CADDC02ACAD4C000E51F06 /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StopwatchView.swift; path = gameForTheFinalCut/Modules/PlayScreen/Views/StopwatchView.swift; sourceTree = SOURCE_ROOT; };
+		E9F71C5B2AF2A21B0035BDDC /* SettingsScreenCellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenCellBuilder.swift; sourceTree = "<group>"; };
+		E9F71C5D2AF2A2710035BDDC /* CustomButtonViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonViewCell.swift; sourceTree = "<group>"; };
+		E9F71C602AF2A29B0035BDDC /* SettingsCellCommonProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellCommonProtocol.swift; sourceTree = "<group>"; };
+		E9F71C622AF2A2AF0035BDDC /* SettingsCellCommonDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellCommonDataProtocol.swift; sourceTree = "<group>"; };
+		E9F71C652AF2A3C30035BDDC /* UIImageView + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + extension.swift"; sourceTree = "<group>"; };
 		E9FBF4B02AD7FCDB00542E2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E9FBF4B22AD7FD3A00542E2C /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		E9FBF4B42AD83BC400542E2C /* UITextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldCell.swift; sourceTree = "<group>"; };
@@ -57,18 +65,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E92CC5B52AF1158F00A3F803 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				E92CC5B72AF115EC00A3F803 /* UITableViewDelegate.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		E92CC5B62AF115BD00A3F803 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				E95799AA2AC2EB0C004A1F44 /* SettingsViewController.swift */,
+				E9F71C5B2AF2A21B0035BDDC /* SettingsScreenCellBuilder.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -92,6 +93,7 @@
 		E95799902AC2E2B6004A1F44 /* gameForTheFinalCut */ = {
 			isa = PBXGroup;
 			children = (
+				E9F71C642AF2A3AF0035BDDC /* Extensions */,
 				E967B0C72ADAD8540035E16F /* Modules */,
 				E97E8C3B2AD7E96100F6A7E1 /* Supporting */,
 				E9D178A92ACEB65E00C9E520 /* Application */,
@@ -133,10 +135,10 @@
 		E967B0D62ADC12950035E16F /* SettingsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				E9F71C5F2AF2A2920035BDDC /* Protocols */,
 				E92CC5B62AF115BD00A3F803 /* Controllers */,
 				E9A99E2F2ADFEBBC009EE45C /* Models */,
 				E9FBF4B82AD8441500542E2C /* TableViewCellSettings */,
-				E92CC5B52AF1158F00A3F803 /* Extensions */,
 			);
 			path = SettingsScreen;
 			sourceTree = "<group>";
@@ -152,8 +154,8 @@
 		E967B0D82ADC12FE0035E16F /* RecordScreen */ = {
 			isa = PBXGroup;
 			children = (
+				E9F71C6D2AF2EC9A0035BDDC /* Models */,
 				E95799A82AC2EAD8004A1F44 /* HighScoreViewController.swift */,
-				E967B0DB2ADC55A90035E16F /* HighScore.swift */,
 			);
 			path = RecordScreen;
 			sourceTree = "<group>";
@@ -184,11 +186,37 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		E9F71C5F2AF2A2920035BDDC /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E9F71C602AF2A29B0035BDDC /* SettingsCellCommonProtocol.swift */,
+				E9F71C622AF2A2AF0035BDDC /* SettingsCellCommonDataProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E9F71C642AF2A3AF0035BDDC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E9F71C652AF2A3C30035BDDC /* UIImageView + extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E9F71C6D2AF2EC9A0035BDDC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E967B0DB2ADC55A90035E16F /* HighScore.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E9FBF4B82AD8441500542E2C /* TableViewCellSettings */ = {
 			isa = PBXGroup;
 			children = (
 				E9FBF4B42AD83BC400542E2C /* UITextFieldCell.swift */,
 				E97E8C3C2AD7EA2600F6A7E1 /* CustomViewCell.swift */,
+				E9F71C5D2AF2A2710035BDDC /* CustomButtonViewCell.swift */,
 			);
 			path = TableViewCellSettings;
 			sourceTree = "<group>";
@@ -263,19 +291,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E92CC5B82AF115EC00A3F803 /* UITableViewDelegate.swift in Sources */,
 				E967B0DA2ADC15B60035E16F /* SectionStruct.swift in Sources */,
 				E95799A92AC2EAD8004A1F44 /* HighScoreViewController.swift in Sources */,
+				E9F71C662AF2A3C30035BDDC /* UIImageView + extension.swift in Sources */,
+				E9F71C632AF2A2AF0035BDDC /* SettingsCellCommonDataProtocol.swift in Sources */,
+				E9F71C612AF2A29B0035BDDC /* SettingsCellCommonProtocol.swift in Sources */,
 				E9FBF4B32AD7FD3A00542E2C /* PlayViewController.swift in Sources */,
 				E967B0DC2ADC55A90035E16F /* HighScore.swift in Sources */,
 				E95799922AC2E2B6004A1F44 /* AppDelegate.swift in Sources */,
 				E95799942AC2E2B6004A1F44 /* SceneDelegate.swift in Sources */,
+				E9F71C5E2AF2A2710035BDDC /* CustomButtonViewCell.swift in Sources */,
 				E967B0CB2ADAD89E0035E16F /* GameFieldView.swift in Sources */,
 				E95799AB2AC2EB0C004A1F44 /* SettingsViewController.swift in Sources */,
 				E9CADDC12ACAD4C000E51F06 /* StopwatchView.swift in Sources */,
 				E97E8C3D2AD7EA2600F6A7E1 /* CustomViewCell.swift in Sources */,
 				E9FBF4B12AD7FCDB00542E2C /* ViewController.swift in Sources */,
 				E9FBF4B52AD83BC400542E2C /* UITextFieldCell.swift in Sources */,
+				E9F71C5C2AF2A21B0035BDDC /* SettingsScreenCellBuilder.swift in Sources */,
 				E967B0CD2ADAE8610035E16F /* RedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,16 +11,17 @@ final class RedView: UIView {
     //MARK: - Variables
     var customBackgroundColor: UIColor?
     
-        init() {
-    	   self.customBackgroundColor = UIColor(named: "pincColor") ?? .blue
-    	   super.init(frame: .zero)
-    	   self.backgroundColor = customBackgroundColor
-        }
+    init() {
+	   self.customBackgroundColor = UIColor(named: "pincColor") ?? .blue
+	   super.init(frame: .zero)
+	   self.backgroundColor = customBackgroundColor
+    }
     
-        required init?(coder: NSCoder) {
-    	   fatalError("init(coder:) has not been implemented")
-        }
+    required init?(coder: NSCoder) {
+	   fatalError("init(coder:) has not been implemented")
+    }
     
+    //MARK: - functions
     func make(_ xPosition: CGFloat) {
 	   guard let viewWidth = superview?.frame.size.width else { return }
 	   

@@ -27,14 +27,19 @@ struct MockData {
 	   .general: SettingsData(
 		  sectionTitle: "Введите свое имя",
 		  sectionItems: ["Имя игрока"]),
-	   .character: SettingsData(
-		  sectionTitle: "Персонаж",
-		  sectionItems: [
-			 "Отважная девочка",
-			 "Смешной динозавр",
-			 "Бородатый богатырь"
-		  ]
-	   ),
+	   
+		  .updateImage: SettingsData(
+			 sectionTitle: "Смена аватара",
+			 sectionItems: [""]),
+	   
+		  .character: SettingsData(
+			 sectionTitle: "Персонаж",
+			 sectionItems: [
+				"Отважная девочка",
+				"Смешной динозавр",
+				"Бородатый богатырь"
+			 ]
+		  ),
 	   .obstacleColor: SettingsData(
 		  sectionTitle: "Цвет препятствия",
 		  sectionItems: [
@@ -49,12 +54,12 @@ struct MockData {
 			 "Easy",
 			 "Normal",
 			 "Hard"]
-	   )
+	   ),
     ]
 }
 
 enum SectionType: Int {
-    case general, character, obstacleColor, difficulty
+    case general, updateImage, character, obstacleColor, difficulty
 }
 
 struct SettingsData {
@@ -65,4 +70,3 @@ struct SettingsData {
 extension SectionType: Encodable, Decodable {
     
 }
-

@@ -22,7 +22,6 @@ final class HighScoreViewController: UIViewController {
     
     var playerName: String?
     var playerTime: String?
-    //вот
     var selectedImage: UIImage?
     
     var stopWatchView = StopWatchView()
@@ -54,6 +53,11 @@ final class HighScoreViewController: UIViewController {
 		  let newHighScore = HighScore(playerName: playerName, playerTime: playerTime)
 		  highScores.append(newHighScore)
 		  saveHighScores()
+	   }
+	   
+	   if let imageData = UserDefaults.standard.data(forKey: "selectedImage"),
+		 let image = UIImage(data: imageData) {
+		  selectedImage = image
 	   }
     }
     
@@ -115,14 +119,13 @@ extension HighScoreViewController: UITableViewDelegate, UITableViewDataSource {
 		  let playerNameText = playerName ?? "Player"
 		  let playerTimeText = playerTime ?? "00"
 		  listConfiguration.text = "Игрок: \(playerNameText) Время: \(playerTimeText)"
-		  //здесь
+		  
 		  if let image = selectedImage {
 			 listConfiguration.image = image
 		  }
 	   } else {
 		  let highScore = highScores[indexPath.row - 1]
 		  listConfiguration.text = "Игрок: \(highScore.playerName) Время: \(highScore.playerTime)"
-		  //здесь
 		  if let playerAvatar = loadPlayerAvatar(forPlayerName: highScore.playerName) {
 			 listConfiguration.image = playerAvatar
 		  }
