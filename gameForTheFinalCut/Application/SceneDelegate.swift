@@ -12,19 +12,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	var window: UIWindow?
 
 
-	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-		
-	    guard let scene = (scene as? UIWindowScene) else { return }
-	    
-	    window = UIWindow(windowScene: scene)
-	    
-	    let controller = ViewController()
-	    let navigationController = UINavigationController()
-	    navigationController.viewControllers.append(controller)
-	    
-	    window?.rootViewController = navigationController
-	    window?.makeKeyAndVisible()
-	}
+    func scene(_ scene: UIScene, willConnectTo
+			session: UISceneSession, options
+			connectionOptions: UIScene.ConnectionOptions) {
+	   
+	   guard let scene = (scene as? UIWindowScene) else { return }
+	   
+	   window = UIWindow(windowScene: scene)
+	   
+	   let launchScreenController = LaunchScreenViewController()
+	   let navigationController = UINavigationController(rootViewController: launchScreenController) 
+	   
+	   window?.rootViewController = navigationController
+	   window?.makeKeyAndVisible()
+    }
 
 	func sceneDidDisconnect(_ scene: UIScene) {
 		// Called as the scene is being released by the system.
