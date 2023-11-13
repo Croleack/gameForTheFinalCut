@@ -77,7 +77,6 @@ final class SettingsViewController: UIViewController {
 		  stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
 		  stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 		  avatarImageView.heightAnchor.constraint(equalToConstant: Constants.heightAndWidthAvatar),
-		  avatarImageView.widthAnchor.constraint(equalToConstant: Constants.heightAndWidthAvatar)
 	   ])
     }
  
@@ -210,6 +209,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 	   return Constants.tableViewHeightForHeaderInSection
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+	   return Constants.heightForRowAt
+    }
     // MARK: - userDefaults
 
     func loadSelectedOptions() {
@@ -268,6 +271,8 @@ extension SettingsViewController: CustomButtonViewCellDelegateProtocol {
 	   present(alert, animated: true)
     }
     
+
+    
     func saveSelectedImage(_ image: UIImage) {
 	   if let imageData = image.jpegData(compressionQuality: 1.0) {
 		  UserDefaults.standard.set(imageData, forKey: "selectedImage")
@@ -285,7 +290,7 @@ fileprivate extension SettingsViewController {
 	   static let constraintsTitleLabelBottomAnchor: CGFloat = -8.0
 	   static let tableViewHeightForHeaderInSection: CGFloat = 20.0
 	   static let heightAndWidthAvatar: CGFloat = 40.0
-	   
+	   static let heightForRowAt: CGFloat = 44.0
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class PlayViewController: UIViewController {
     
@@ -20,6 +21,8 @@ class PlayViewController: UIViewController {
 	   let view = RedView()
 	   return view
     }()
+    
+    var audioPlayer = AVAudioPlayer()
     
     var redViews: [RedView] = []
     
@@ -48,7 +51,11 @@ class PlayViewController: UIViewController {
 											    target: nil,
 											    action: nil)
     }
-    
+    //MARK: - viewWillDisappear
+    override func viewWillDisappear(_ animated: Bool) {
+	   super.viewWillDisappear(animated)
+	   audioPlayer.stop()
+    }
     //MARK: - functios
     
     private func setupView() {
@@ -68,6 +75,21 @@ class PlayViewController: UIViewController {
 		  repeats: true
 	   )
 	   stopWatchView.startTimer()
+	   startMusic()
+    }
+    
+    private func startMusic() {
+	   do {
+		  if let url = Bundle.main.url(forResource: "music", withExtension: "mp3") {
+			 audioPlayer = try AVAudioPlayer(contentsOf: url)
+			 audioPlayer.prepareToPlay()
+			 audioPlayer.play()
+		  } else {
+			 print("Audio file not found.")
+		  }
+	   } catch {
+		  print("Error playing audio: \(error.localizedDescription)")
+	   }
     }
     
     private func updateDifficulty(_ selectedDifficultyNumber: Int) {
@@ -130,6 +152,7 @@ class PlayViewController: UIViewController {
 	   isGameOver = true
 	   timer?.invalidate()
 	   stopWatchView.stop()
+	   audioPlayer.stop()
 	   
 	   let playerTime = stopWatchView.getTimeString()
 	   UserDefaults.standard.set(playerTime, forKey: "playerTime")
@@ -145,7 +168,7 @@ class PlayViewController: UIViewController {
 			 style: .default,
 			 handler: { [weak self] _ in
 				self?.isGameOver = false
-				self?.dismiss(animated: true, completion: nil)
+//				self?.dismiss(animated: true, completion: nil)
 				self?.startGame()
 			 }
 		  )

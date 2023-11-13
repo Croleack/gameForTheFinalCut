@@ -17,22 +17,20 @@ class LaunchScreenViewController: UIViewController {
 	   imageView.image = UIImage(named: "logo")
 	   return imageView
     }()
-
+    
     //MARK: - viewDidLoad
     override func viewDidLoad() {
 	   super.viewDidLoad()
 	   view.addSubview(imageView)
 	   view.backgroundColor = .white
-    }
-    //MARK: - viewDidLayoutSubviews
-    override func viewDidLayoutSubviews() {
-	   super.viewDidLayoutSubviews()
-	   imageView.center  = view.center
-	 
-	   DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+	   
+	   imageView.center = view.center
+	   
+	   DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 		  self.animate()
-	   })
+	   }
     }
+    
     //MARK: - functios
     private func animate() {
 	   UIView.animate(withDuration: Constants.animationDuration, animations: {
@@ -52,14 +50,13 @@ class LaunchScreenViewController: UIViewController {
 		  self.imageView.alpha = 0
 	   }, completion: { done in
 		  if done {
-			 DispatchQueue.main.asyncAfter(deadline: .now() + Constants.delayBeforeTransition,
-									 execute: {
+			 DispatchQueue.main.asyncAfter(deadline: .now() + Constants.delayBeforeTransition) {
 				let viewController = ViewController()
 				let navigationController = UINavigationController(rootViewController: viewController)
 				navigationController.modalTransitionStyle = .crossDissolve
 				navigationController.modalPresentationStyle = .fullScreen
 				self.present(navigationController, animated: true)
-			 })
+			 }
 		  }
 	   })
     }
