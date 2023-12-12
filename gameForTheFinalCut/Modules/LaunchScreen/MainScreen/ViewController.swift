@@ -112,7 +112,7 @@ extension ViewController: SettingsDelegate {
 					  selectedDifficulty: Int?,
 					  selectedColor: Int?
     ) {
-	   self.selectedItems = selectedItems   
+	   self.selectedItems = selectedItems
     }
 }
 // MARK: - Constants

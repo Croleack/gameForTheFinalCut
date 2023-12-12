@@ -31,7 +31,7 @@ class LaunchScreenViewController: UIViewController {
 	   }
     }
     
-    //MARK: - functios
+    //MARK: - functions
     private func animate() {
 	   UIView.animate(withDuration: Constants.animationDuration, animations: {
 		  let size = self.view.frame.size.width * Constants.animationSizeMultiplier

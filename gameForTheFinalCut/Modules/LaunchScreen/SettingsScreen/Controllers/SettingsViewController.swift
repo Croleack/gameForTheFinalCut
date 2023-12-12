@@ -27,7 +27,7 @@ final class SettingsViewController: UIViewController {
     var selectedItems: [SectionType: SectionStruct] = [:]
     
     let imagePicker = UIImagePickerController()
-    
+
     //MARK: - UI Components
     private let tableView: UITableView = {
 	   let tableView = UITableView()
@@ -61,7 +61,7 @@ final class SettingsViewController: UIViewController {
 	   imagePicker.delegate = self
     }
     
-    //MARK: - functios
+    //MARK: - functions
     private func setupUI() {
 	   tableView.backgroundColor = backgroundColor
 	   
@@ -270,9 +270,7 @@ extension SettingsViewController: CustomButtonViewCellDelegateProtocol {
 	   alert.addAction(actionCansel)
 	   present(alert, animated: true)
     }
-    
-
-    
+     
     func saveSelectedImage(_ image: UIImage) {
 	   if let imageData = image.jpegData(compressionQuality: 1.0) {
 		  UserDefaults.standard.set(imageData, forKey: "selectedImage")

@@ -35,7 +35,7 @@ final class HighScoreViewController: UIViewController {
 	   setupRecords()
     }
     
-    //MARK: - functios
+    //MARK: - functions
     
     private func setupRecords() {
 	   if let savedPlayerName = UserDefaults.standard.string(forKey: "playerName") {

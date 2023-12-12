@@ -2,7 +2,7 @@
 //  StopWatchView.swift
 //  gameForTheFinalCut
 //
-//  Created by Enzhe Gaysina on 02.10.2023.
+//  Created by Enzhe Gaysina on 12.12.2023.
 //
 
 import UIKit
@@ -71,7 +71,7 @@ final class StopWatchView: UIView {
 	   let timeString = String(format: "%02d:%02d", minutes, seconds)
 	   label.text = timeString
     }
-
+    
     func stop() {
 	   stopTimer()
     }

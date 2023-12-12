@@ -37,7 +37,7 @@
             <Locations>
                <Location
                   uuid = "4DCDD2E4-6E0F-409F-91CD-619BB1E080AF - c81ef6a7939fc16c"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "gameForTheFinalCut.GameFieldView.init(frame: __C.CGRect) -&gt; gameForTheFinalCut.GameFieldView"
@@ -52,7 +52,7 @@
                </Location>
                <Location
                   uuid = "4DCDD2E4-6E0F-409F-91CD-619BB1E080AF - b6bde364adda24a0"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "gameForTheFinalCut.GameFieldView.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;gameForTheFinalCut.GameFieldView&gt;"
@@ -78,8 +78,8 @@
             filePath = "gameForTheFinalCut/Modules/PlayScreen/PlayViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "startGame()"
             landmarkType = "7">
          </BreakpointContent>
@@ -133,7 +133,7 @@
             <Locations>
                <Location
                   uuid = "DB5BC351-28B1-4CE2-A524-9EA5E4BCBF32 - 2e65d82ea4d27ad6"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "gameForTheFinalCut.HighScoreViewController.loadPlayerAvatar(forPlayerName: Swift.String) -&gt; Swift.Optional&lt;__C.UIImage&gt;"
@@ -148,7 +148,7 @@
                </Location>
                <Location
                   uuid = "DB5BC351-28B1-4CE2-A524-9EA5E4BCBF32 - 2e65d82ea4d27d73"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "gameForTheFinalCut.HighScoreViewController.loadPlayerAvatar(forPlayerName: Swift.String) -&gt; Swift.Optional&lt;__C.UIImage&gt;"
@@ -190,8 +190,8 @@
             filePath = "gameForTheFinalCut/Modules/PlayScreen/PlayViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "startGame()"
             landmarkType = "7">
          </BreakpointContent>
@@ -206,8 +206,8 @@
             filePath = "gameForTheFinalCut/Modules/PlayScreen/PlayViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "handleCollision()"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,8 +222,8 @@
             filePath = "gameForTheFinalCut/Modules/PlayScreen/PlayViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "handleCollision()"
             landmarkType = "7">
          </BreakpointContent>
@@ -238,10 +238,238 @@
             filePath = "gameForTheFinalCut/Modules/PlayScreen/PlayViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "handleCollision()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7F06BB83-7EB5-4C41-A2A9-640040D2D61A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "gameForTheFinalCut/Modules/LaunchScreen/LaunchScreenViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "07C6977B-E175-46B8-9210-699246ABC221"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "gameForTheFinalCut/Modules/LaunchScreen/LaunchScreenViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "animate()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "07C6977B-E175-46B8-9210-699246ABC221 - 18fcb464d00c90d2"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "gameForTheFinalCut.LaunchScreenViewController.animate() -&gt; ()"
+                  moduleName = "gameForTheFinalCut"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enzhegaysina/Documents/GitHub/gameForTheFinalCut/gameForTheFinalCut/Modules/LaunchScreen/LaunchScreenViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "07C6977B-E175-46B8-9210-699246ABC221 - 7b88e0a9876b5559"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in gameForTheFinalCut.LaunchScreenViewController.animate() -&gt; ()"
+                  moduleName = "gameForTheFinalCut"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enzhegaysina/Documents/GitHub/gameForTheFinalCut/gameForTheFinalCut/Modules/LaunchScreen/LaunchScreenViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A445C1F-90B3-45BD-BCDA-05FC3003597A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "gameForTheFinalCut/Modules/LaunchScreen/LaunchScreenViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "animate()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "73DAD6FB-3B5F-4FD7-AE97-EA3E7052101E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "gameForTheFinalCut/Modules/LaunchScreen/LaunchScreenViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "animate()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0B01A8A1-44B1-42E6-B969-E558D9040754"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "gameForTheFinalCut/Modules/LaunchScreen/LaunchScreenViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "animate()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "E02616E2-8C44-44AC-A594-332288B5015C"
+            shouldBeEnabled = "No"
+            condition = " "
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
+         <BreakpointContent
+            uuid = "588724C8-D470-4262-B75F-AAB7C8D3BD7A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "057E481E-EBC4-4131-AE24-3B965C632ABB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "gameForTheFinalCut/Modules/PlayScreen/PlayViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "gameFieldView"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "29499B0D-9764-45A5-A48A-B058322EB349"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "gameForTheFinalCut/Modules/PlayScreen/PlayViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "gameFieldView"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "29499B0D-9764-45A5-A48A-B058322EB349 - a89a63cc0da81809"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; gameForTheFinalCut.GameFieldView in variable initialization expression of gameForTheFinalCut.PlayViewController.gameFieldView : gameForTheFinalCut.GameFieldView"
+                  moduleName = "gameForTheFinalCut"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enzhegaysina/Documents/GitHub/gameForTheFinalCut/gameForTheFinalCut/Modules/PlayScreen/PlayViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "29499B0D-9764-45A5-A48A-B058322EB349 - 4d45f8d31b772538"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "gameForTheFinalCut.PlayViewController.gameFieldView.getter : gameForTheFinalCut.GameFieldView"
+                  moduleName = "gameForTheFinalCut"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enzhegaysina/Documents/GitHub/gameForTheFinalCut/gameForTheFinalCut/Modules/PlayScreen/PlayViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "29499B0D-9764-45A5-A48A-B058322EB349 - 3b606c36a24dc991"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "gameForTheFinalCut.PlayViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; gameForTheFinalCut.PlayViewController"
+                  moduleName = "gameForTheFinalCut"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enzhegaysina/Documents/GitHub/gameForTheFinalCut/gameForTheFinalCut/Modules/PlayScreen/PlayViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "29499B0D-9764-45A5-A48A-B058322EB349 - 449d18bf0b9648ed"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "gameForTheFinalCut.PlayViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;gameForTheFinalCut.PlayViewController&gt;"
+                  moduleName = "gameForTheFinalCut"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/enzhegaysina/Documents/GitHub/gameForTheFinalCut/gameForTheFinalCut/Modules/PlayScreen/PlayViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "116">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

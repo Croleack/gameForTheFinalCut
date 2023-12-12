@@ -41,6 +41,8 @@ class PlayViewController: UIViewController {
     override func viewDidLoad() {
 	   super.viewDidLoad()
 	   setupView()
+	   
+	   NotificationCenter.default.removeObserver(self)
     }
     
     //MARK: - viewWillAppear
@@ -56,7 +58,7 @@ class PlayViewController: UIViewController {
 	   super.viewWillDisappear(animated)
 	   audioPlayer.stop()
     }
-    //MARK: - functios
+    //MARK: - functions
     
     private func setupView() {
 	   view.backgroundColor = UIColor(named: "secondaryColor") ?? .gray
@@ -114,11 +116,12 @@ class PlayViewController: UIViewController {
 	   }
 	   
 	   time += 1
-	   redViews.enumerated().forEach({ index, value in
-		  DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) + 1, execute: {
+	   redViews.enumerated().forEach { index, value in
+		  DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) + 1) { [weak self] in
+			 guard let self = self else { return }
 			 value.animateRedView(self.isGameOver, self.gameDifficulty.speed)
-		  })
-	   })
+		  }
+	   }
     }
     
     private func createDisplayLink() {
